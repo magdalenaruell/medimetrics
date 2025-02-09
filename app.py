@@ -24,63 +24,99 @@ EXCEL_FILES = [
 st.markdown(
     """
     <style>
+    /* Gesamtanpassung */
+    .block-container {
+        max-width: 1000px;
+        margin: auto;
+        text-align: center;
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(135deg, #e6f0ff, #f0f8ff);
+        padding: 20px;
+        border-radius: 15px;
+    }
+
+    /* Header */
     .header-container {
         text-align: center;
-        padding: 30px;
+        padding: 20px;
     }
     .header-title {
-        font-size: 45px;
+        font-size: 42px;
         font-weight: bold;
-        color: white;
-        background: linear-gradient(90deg, #0072ff, #00c6ff);
-        padding: 15px;
+        color: #2c3e50;
+        padding: 10px 20px;
         border-radius: 15px;
-        box-shadow: 4px 4px 15px rgba(0,0,0,0.3);
         display: inline-block;
+        font-family: 'Arial', sans-serif;
     }
     .header-subtitle {
         font-size: 18px;
-        color: #333;
-        margin-top: 10px;
+        color: #4b5563;
+        margin-top: 5px;
     }
 
-    /* Vergleichstabelle stylen */
+    /* Logo */
+    .logo {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 120px;
+    }
+
+    /* Dropdowns & Buttons */
+    .stSelectbox, .stButton>button {
+        background: linear-gradient(90deg, #90caf9, #a5d6a7);
+        border: none;
+        color: white;
+        font-weight: bold;
+        padding: 8px 12px;
+        border-radius: 10px;
+        transition: 0.3s ease-in-out;
+    }
+    .stButton>button:hover {
+        background: linear-gradient(90deg, #64b5f6, #81c784);
+        transform: scale(1.05);
+    }
+
+    /* Vergleichstabelle */
     table {
         width: 100%;
         border-collapse: collapse;
         margin: auto;
+        border-radius: 10px;
+        overflow: hidden;
+        background: white;
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
     }
     th, td {
         border: 1px solid #ddd;
-        padding: 8px;
+        padding: 10px;
         text-align: center;
     }
     th {
-        background-color: #f4f4f4;
+        background-color: #e3f2fd;
+        font-weight: bold;
     }
-
-    /* Footer */
-    .footer {
-        text-align: center;
+    td {
         font-size: 14px;
-        color: gray;
-        margin-top: 50px;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# 📌 Header anzeigen
+# 📌 Header mit Logo anzeigen
 st.markdown(
     """
     <div class="header-container">
-        <div class="header-title">🏥 MediMetrics – Flächenmanagement</div>
+        <img class="logo" src="IMG_0728 (1).PNG">
+        <div class="header-title">MediMetrics</div>
         <div class="header-subtitle">Optimierung der Raum- & Flächennutzung für maximale Effizienz im Krankenhaus</div>
     </div>
     """,
     unsafe_allow_html=True
 )
+
        
 # 🦠 **Szenario Pandemie** (Schöner formatiert)
 st.markdown("""
