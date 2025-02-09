@@ -103,11 +103,11 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # 📂 **Erste Excel-Datei auswählen**
-st.subheader("📂 Wähle die erste Excel-Datei")
+st.subheader("📂 Wählen Sie die erste Teilstelle")
 selected_file1 = st.selectbox("📑 Erste Datei auswählen:", EXCEL_FILES, key="file1")
 
 # 📂 **Zweite Excel-Datei auswählen**
-st.subheader("📂 Wähle die zweite Excel-Datei")
+st.subheader("📂 Wählen Sie eine Vergleichsteilstelle")
 selected_file2 = st.selectbox("📑 Zweite Datei auswählen:", [f for f in EXCEL_FILES if f != selected_file1], key="file2")
 
 if selected_file1 and selected_file2:
@@ -207,3 +207,4 @@ if selected_file1 and selected_file2:
 
     except Exception as e:
         st.error(f"❌ Fehler beim Einlesen der Tabellen: {str(e)}")
+st.subheader("MediMetrics ist ein Universitätsprojekt der University of Applied Sciences im Rahmen des Moduls Nachhaltiges Betreiben von Objekten. Betreut von Kirch und Abel, entworfen von Kirchhoff, Kuehn, Merz, Ruell und Wecker.")
