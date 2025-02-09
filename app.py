@@ -241,7 +241,7 @@ if selected_file1 and selected_file2:
         comparison_html += "</table>"
 
         st.subheader("📊 Vergleich der Tabellen")
-        st.markdown("**Gleiche Werte in beiden Tabellen = 🟩 
+        st.markdown("Gleiche Werte in beiden Tabellen = 🟩 
         Unterschiedliche Werte in beiden Tabellen = 🟥 
         Komplette Zeilen-Übereinstimmung = 🟢 
         Teilweise Übereinstimmung = 🟠
