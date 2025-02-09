@@ -134,17 +134,22 @@ if selected_file1 and selected_file2:
             df1 = pd.read_excel(xls1, sheet_name=selected_sheet1, engine="openpyxl")
             df2 = pd.read_excel(xls2, sheet_name=selected_sheet2, engine="openpyxl")
 
-            # Sicherstellen, dass Spalte B existiert
+            # Sicherstellen, dass Spalte "Räume in Funktionsbereichen" existiert
             if "Räume in Funktionsbereichen" not in df1.columns or "Räume in Funktionsbereichen" not in df2.columns:
                 st.error("❌ Die Spalte 'Räume in Funktionsbereichen' (Spalte B) existiert nicht in einer oder beiden Dateien.")
                 st.stop()
 
-            # Daten nach "Räume in Funktionsbereichen" gruppieren
+            df1["Tabelle"] = selected_file1
+            df2["Tabelle"] = selected_file2
+
+            # Beide Tabellen nach "Räume in Funktionsbereichen" gruppieren
             df1_grouped = df1.set_index("Räume in Funktionsbereichen")
             df2_grouped = df2.set_index("Räume in Funktionsbereichen")
 
-            # Gemeinsame Zeilen identifizieren
+            # Gemeinsame & individuelle Zeilen identifizieren
             common_rows = df1_grouped.index.intersection(df2_grouped.index)
+            unique_to_df1 = df1_grouped.index.difference(df2_grouped.index)
+            unique_to_df2 = df2_grouped.index.difference(df1_grouped.index)
 
             # HTML für Vergleichstabelle erstellen
             comparison_html = """
@@ -152,8 +157,8 @@ if selected_file1 and selected_file2:
                 <tr>
                     <th>Vergleich</th>
                     <th>Räume in Funktionsbereichen</th>
-                    <th>Tabelle 1</th>
-                    <th>Tabelle 2</th>
+                    <th>Tabelle</th>
+                    <th>Details</th>
                 </tr>
             """
 
@@ -161,35 +166,33 @@ if selected_file1 and selected_file2:
                 row1 = df1_grouped.loc[row]
                 row2 = df2_grouped.loc[row]
 
-                row1 = row1.to_frame().T if isinstance(row1, pd.Series) else row1
-                row2 = row2.to_frame().T if isinstance(row2, pd.Series) else row2
-
                 row_styles = []
                 match_status = "🟢"
-
-                row_html = f"<tr><td>{match_status}</td><td>{row}</td>"
 
                 for col in row1.columns:
                     if col not in row2.columns:
                         continue
                     val1, val2 = row1[col].values[0], row2[col].values[0]
 
-                    if pd.isna(val1) and pd.isna(val2):
-                        row_styles.append(f"<td>{val1}</td><td>{val2}</td>")
-                    elif val1 == val2:
-                        row_styles.append(f"<td style='background-color: #90EE90;'>{val1}</td><td style='background-color: #90EE90;'>{val2}</td>")
+                    if val1 == val2:
+                        row_styles.append(f"<td style='background-color: #90EE90;'>{val1}</td>")
                     else:
-                        row_styles.append(f"<td style='background-color: #FF4500; font-weight:bold;'>{val1}</td><td style='background-color: #FF4500; font-weight:bold;'>{val2}</td>")
+                        row_styles.append(f"<td style='background-color: #FF4500; font-weight:bold;'>{val1} | {val2}</td>")
                         match_status = "🟠"
 
-                if all("#90EE90" in s for s in row_styles):
-                    match_status = "🟢"
-                elif any("#FF4500" in s for s in row_styles):
-                    match_status = "🟠"
-                else:
-                    match_status = "🔴"
+                row_html = f"<tr><td>{match_status}</td><td>{row}</td><td>{selected_file1}</td>{''.join(row_styles)}</tr>"
+                comparison_html += row_html
+                row_html = f"<tr><td>{match_status}</td><td>{row}</td><td>{selected_file2}</td>{''.join(row_styles)}</tr>"
+                comparison_html += row_html
 
-                row_html = f"<tr><td>{match_status}</td><td>{row}</td>{''.join(row_styles)}</tr>"
+            for row in unique_to_df1:
+                row1 = df1_grouped.loc[row]
+                row_html = f"<tr><td>🔴</td><td>{row}</td><td>{selected_file1}</td><td>{row1.to_string()}</td></tr>"
+                comparison_html += row_html
+
+            for row in unique_to_df2:
+                row2 = df2_grouped.loc[row]
+                row_html = f"<tr><td>🔴</td><td>{row}</td><td>{selected_file2}</td><td>{row2.to_string()}</td></tr>"
                 comparison_html += row_html
 
             comparison_html += "</table>"
