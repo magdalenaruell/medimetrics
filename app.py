@@ -108,18 +108,28 @@ if selected_file1 and selected_file2:
             # Gemeinsame Zeilen identifizieren
             common_rows = df1_grouped.index.intersection(df2_grouped.index)
 
-            # Neue DataFrame für Vergleich erstellen
-            comparison_results = []
+            # HTML für Vergleichstabelle erstellen
+            comparison_html = """
+            <table>
+                <tr>
+                    <th>Vergleich</th>
+                    <th>Räume in Funktionsbereichen</th>
+                    <th>Tabelle 1</th>
+                    <th>Tabelle 2</th>
+                </tr>
+            """
+
             for row in common_rows:
                 row1 = df1_grouped.loc[row]
                 row2 = df2_grouped.loc[row]
 
-                # Falls nur eine Zeile, sicherstellen, dass sie als DataFrame bleibt
                 row1 = row1.to_frame().T if isinstance(row1, pd.Series) else row1
                 row2 = row2.to_frame().T if isinstance(row2, pd.Series) else row2
 
                 row_styles = []
                 match_status = "🟢"  # Standard auf "komplett gleich"
+
+                row_html = f"<tr><td>{match_status}</td><td>{row}</td>"
 
                 for col in row1.columns:
                     if col not in row2.columns:
@@ -127,14 +137,13 @@ if selected_file1 and selected_file2:
                     val1, val2 = row1[col].values[0], row2[col].values[0]
 
                     if pd.isna(val1) and pd.isna(val2):
-                        row_styles.append(f"<td>{val1}</td>")
+                        row_styles.append(f"<td>{val1}</td><td>{val2}</td>")
                     elif val1 == val2:
-                        row_styles.append(f"<td style='background-color: #90EE90;'>{val1}</td>")  # Grün für gleiche Werte
+                        row_styles.append(f"<td style='background-color: #90EE90;'>{val1}</td><td style='background-color: #90EE90;'>{val2}</td>")
                     else:
-                        row_styles.append(f"<td style='background-color: #FF4500; font-weight:bold;'>{val1} | {val2}</td>")  # Rot für unterschiedliche Werte
-                        match_status = "🟠"  # Falls Unterschiede existieren
+                        row_styles.append(f"<td style='background-color: #FF4500; font-weight:bold;'>{val1}</td><td style='background-color: #FF4500; font-weight:bold;'>{val2}</td>")
+                        match_status = "🟠"
 
-                # Falls die gesamte Zeile gleich ist, bleibt "🟢", ansonsten "🟠"
                 if all("#90EE90" in s for s in row_styles):
                     match_status = "🟢"
                 elif any("#FF4500" in s for s in row_styles):
@@ -142,35 +151,14 @@ if selected_file1 and selected_file2:
                 else:
                     match_status = "🔴"
 
-                comparison_results.append((match_status, row, row_styles))
+                row_html = f"<tr><td>{match_status}</td><td>{row}</td>{''.join(row_styles)}</tr>"
+                comparison_html += row_html
 
-            # 📌 Tabellen nebeneinander anzeigen
-            st.subheader(f"📊 Vergleich der Tabellen: {selected_file1} vs. {selected_file2}")
+            comparison_html += "</table>"
 
-            col1, col2 = st.columns(2)
-
-            with col1:
-                st.subheader(f"📄 {selected_file1}")
-                st.dataframe(df1)
-
-            with col2:
-                st.subheader(f"📄 {selected_file2}")
-                st.dataframe(df2)
-
-            # 📌 Ergebnisse in HTML anzeigen
-            if comparison_results:
-                styled_rows = [f"<tr><td>{status}</td><td>{title}</td>{''.join(row_styles)}</tr>" for status, title, row_styles in comparison_results]
-                table_html = f"""
-                <table>
-                    <tr>
-                        <th>Vergleich</th>
-                        <th>Räume in Funktionsbereichen</th>
-                        <th>Details</th>
-                    </tr>
-                    {''.join(styled_rows)}
-                </table>
-                """
-                st.markdown(table_html, unsafe_allow_html=True)
+            # **Vergleichstabelle in Streamlit anzeigen**
+            st.subheader("📊 Vergleich der Tabellen")
+            st.markdown(comparison_html, unsafe_allow_html=True)
 
         except Exception as e:
             st.error(f"❌ Fehler beim Einlesen der Tabellen: {str(e)}")
