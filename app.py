@@ -24,15 +24,16 @@ EXCEL_FILES = [
 st.markdown(
     """
     <style>
-    /* Gesamtanpassung */
+    /* Gesamtanpassung mit organischem Hintergrund */
     .block-container {
         max-width: 1000px;
         margin: auto;
         text-align: center;
         font-family: 'Arial', sans-serif;
-        background: linear-gradient(135deg, #e6f0ff, #f0f8ff);
+        background: radial-gradient(circle at top left, #e0f7fa, #f1f8ff);
         padding: 20px;
-        border-radius: 15px;
+        border-radius: 20px;
+        box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
     }
 
     /* Header */
@@ -53,14 +54,6 @@ st.markdown(
         font-size: 18px;
         color: #4b5563;
         margin-top: 5px;
-    }
-
-    /* Logo */
-    .logo {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 120px;
     }
 
     /* Dropdowns & Buttons */
@@ -106,17 +99,16 @@ st.markdown(
 )
 
 # 📌 Header mit Logo anzeigen
+st.markdown('<div class="header-container">', unsafe_allow_html=True)
+st.image("https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/IMG_07283.PNG", width=120)
 st.markdown(
     """
-    <div class="header-container">
-        <img class="logo" src="IMG_07283.PNG">
-        <div class="header-title">MediMetrics</div>
-        <div class="header-subtitle">Optimierung der Raum- & Flächennutzung für maximale Effizienz im Krankenhaus</div>
-    </div>
+    <div class="header-title">MediMetrics – Flächenmanagement</div>
+    <div class="header-subtitle">Optimierung der Raum- & Flächennutzung für maximale Effizienz im Krankenhaus</div>
     """,
     unsafe_allow_html=True
 )
-
+st.markdown('</div>', unsafe_allow_html=True)
        
 # 🦠 **Szenario Pandemie** (Schöner formatiert)
 st.markdown("""
