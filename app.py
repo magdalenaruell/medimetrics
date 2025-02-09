@@ -24,63 +24,53 @@ EXCEL_FILES = [
 st.markdown(
     """
     <style>
-    /* Gesamtanpassung mit organischem Hintergrund */
+    /* Gesamtanpassung */
     .block-container {
-        max-width: 1000px;
+        max-width: 900px;
         margin: auto;
         text-align: center;
         font-family: 'Arial', sans-serif;
         background: #ffffff;
         padding: 30px;
-        border-radius: 20px;
-        box-shadow: 5px 5px 20px rgba(0,0,0,0.1);
+        border-radius: 15px;
+        box-shadow: 3px 3px 15px rgba(0,0,0,0.1);
     }
 
-    /* Header */
+    /* Header Styling */
     .header-container {
         text-align: center;
         padding: 20px;
     }
+
+    /* Logo zentrieren */
+    .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .logo {
+        width: 120px;
+        background: white;
+        padding: 8px;
+        border-radius: 50%;
+        box-shadow: 2px 2px 8px rgba(0,0,0,0.15);
+    }
+
     .header-title {
         font-size: 42px;
         font-weight: bold;
         color: #2c3e50;
-        padding: 10px 20px;
-        border-radius: 15px;
-        display: inline-block;
+        text-align: center;
         font-family: 'Arial', sans-serif;
     }
+
     .header-subtitle {
         font-size: 18px;
         color: #4b5563;
+        text-align: center;
         margin-top: 5px;
-    }
-
-    /* Logo */
-    .logo-container {
-        background: white;
-        display: inline-block;
-        padding: 10px;
-        border-radius: 50%;
-        box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-    }
-    .logo {
-        width: 100px;
-    }
-
-    /* Buttons & Dropdowns */
-    .stSelectbox, .stButton>button {
-        background: linear-gradient(90deg, #a5d6a7, #90caf9);
-        border: none;
-        color: white;
-        font-weight: bold;
-        padding: 10px 15px;
-        border-radius: 12px;
-        transition: 0.3s ease-in-out;
-    }
-    .stButton>button:hover {
-        background: linear-gradient(90deg, #81c784, #64b5f6);
-        transform: scale(1.05);
     }
 
     /* Vergleichstabelle */
@@ -93,15 +83,18 @@ st.markdown(
         background: white;
         box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
     }
+
     th, td {
         border: 1px solid #ddd;
         padding: 12px;
         text-align: center;
     }
+
     th {
         background-color: #e3f2fd;
         font-weight: bold;
     }
+
     td {
         font-size: 14px;
     }
@@ -110,9 +103,12 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# 📌 Header mit Logo anzeigen
+# 📌 Header mit zentriertem Logo anzeigen
 st.markdown('<div class="header-container">', unsafe_allow_html=True)
+st.markdown('<div class="logo-container">', unsafe_allow_html=True)
 st.image("https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/IMG_07283.PNG", width=120)
+st.markdown('</div>', unsafe_allow_html=True)
+
 st.markdown(
     """
     <div class="header-title">MediMetrics – Flächenmanagement</div>
@@ -121,6 +117,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 st.markdown('</div>', unsafe_allow_html=True)
+
        
 # 🦠 **Szenario Pandemie** (Schöner formatiert)
 st.markdown("""
