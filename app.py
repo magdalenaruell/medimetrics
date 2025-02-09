@@ -50,10 +50,10 @@ GITHUB_BASE_URL = "https://raw.githubusercontent.com/magdalenaruell/medimetrics/
 
 # 📂 Liste der Excel-Dateien aus deinem Screenshot
 EXCEL_FILES = [
-    "2.02_Wöchnerinnen-_und_Neugeborenenpflege.xlsx",
+    "2.02_Woechnerinnen-_und_Neugeborenenpflege.xlsx",
     "2.03_Intensivmedizin.xlsx",
     "2.04_Dialyse.xlsx",
-    "2.05_Säuglings-,_Kinder-_und_Jugendkrankenpflege.xlsx",
+    "2.05_Saeuglings-,_Kinder-_und_Jugendkrankenpflege.xlsx",
     "2.06_Isolationskrankenpflege.xlsx",
     "2.07_Pflege_psychisch_Kranker.xlsx",
     "2.08_Nuklearmedizin.xlsx",
