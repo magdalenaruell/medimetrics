@@ -72,13 +72,13 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# 📌 Stilvollen Header anzeigen
-st.markdown('<div class="header-container"><div class="header-title">MediMetrics 🚀</div></div>', unsafe_allow_html=True)
-
 # 📌 Bild zentrieren
 st.markdown('<div class="centered-image">', unsafe_allow_html=True)
 st.image("IMG_07283.PNG", width=300)
 st.markdown('</div>', unsafe_allow_html=True)
+
+# 📌 Stilvollen Header anzeigen
+st.markdown('<div class="header-container"><div class="header-title">MediMetrics </div></div>', unsafe_allow_html=True)
 
 # 🦠 **Szenario Pandemie** (Schöner formatiert)
 st.markdown("""
