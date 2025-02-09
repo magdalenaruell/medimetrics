@@ -39,7 +39,7 @@ st.markdown(
     /* Header Styling */
     .header-container {
         text-align: center;
-        padding: 20px;
+        padding: 70px;
     }
 
     /* Logo zentrieren */
