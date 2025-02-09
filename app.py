@@ -110,7 +110,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown(
     """
-    <div class="header-title">MediMetrics – Flächenmanagement</div>
+    <div class="header-title">MediMetrics</div>
     <div class="header-subtitle">Optimierung der Raum- & Flächennutzung für maximale Effizienz im Krankenhaus</div>
     """,
     unsafe_allow_html=True
