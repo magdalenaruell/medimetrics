@@ -109,7 +109,7 @@ st.markdown(
 st.markdown(
     """
     <div class="header-container">
-        <img class="logo" src="IMG_0728 (1).PNG">
+        <img class="logo" src="IMG_07283.PNG">
         <div class="header-title">MediMetrics</div>
         <div class="header-subtitle">Optimierung der Raum- & Flächennutzung für maximale Effizienz im Krankenhaus</div>
     </div>
