@@ -1,0 +1,8 @@
+
+streamlit
+folium
+streamlit-folium
+pdfplumber
+pymupdf
+pandas
+openpyxl
