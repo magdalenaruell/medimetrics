@@ -115,106 +115,95 @@ if selected_file1 and selected_file2:
     file_url2 = GITHUB_BASE_URL + selected_file2
 
     try:
-        xls1 = pd.ExcelFile(file_url1)
-        xls2 = pd.ExcelFile(file_url2)
-        sheet_names1 = xls1.sheet_names
-        sheet_names2 = xls2.sheet_names
-        st.success(f"📄 Dateien erfolgreich geladen: `{selected_file1}` & `{selected_file2}`")
-    except Exception as e:
-        st.error(f"❌ Fehler beim Laden der Dateien: {str(e)}")
-        st.stop()
-    
-     # 📑 **Tabellenblatt für jede Datei auswählen**
-    st.subheader("📄 Wähle ein Tabellenblatt für jede Datei")
-    selected_sheet1 = st.selectbox("📄 Tabellenblatt für die erste Datei:", sheet_names1, key="sheet1")
-    selected_sheet2 = st.selectbox("📄 Tabellenblatt für die zweite Datei:", sheet_names2, key="sheet2")
+        # Immer Tabellenblatt "Paulina" laden
+        sheet_name = "Paulina"
 
-    if selected_sheet1 and selected_sheet2:
-        try:
-            df1 = pd.read_excel(xls1, sheet_name=selected_sheet1, engine="openpyxl")
-            df2 = pd.read_excel(xls2, sheet_name=selected_sheet2, engine="openpyxl")
+        df1 = pd.read_excel(file_url1, sheet_name=sheet_name, engine="openpyxl")
+        df2 = pd.read_excel(file_url2, sheet_name=sheet_name, engine="openpyxl")
 
-            # Sicherstellen, dass Spalte "Räume in Funktionsbereichen" existiert
-            if "Räume in Funktionsbereichen" not in df1.columns or "Räume in Funktionsbereichen" not in df2.columns:
-                st.error("❌ Die Spalte 'Räume in Funktionsbereichen' (Spalte B) existiert nicht in einer oder beiden Dateien.")
-                st.stop()
+        st.success(f"📄 Dateien erfolgreich geladen: `{selected_file1}` & `{selected_file2}` (Tabellenblatt: {sheet_name})")
 
-            df1["Tabelle"] = selected_file1
-            df2["Tabelle"] = selected_file2
+        # Sicherstellen, dass Spalte "Räume in Funktionsbereichen" existiert
+        if "Räume in Funktionsbereichen" not in df1.columns or "Räume in Funktionsbereichen" not in df2.columns:
+            st.error("❌ Die Spalte 'Räume in Funktionsbereichen' (Spalte B) existiert nicht in einer oder beiden Dateien.")
+            st.stop()
 
-            # Beide Tabellen nach "Räume in Funktionsbereichen" gruppieren
-            df1_grouped = df1.set_index("Räume in Funktionsbereichen")
-            df2_grouped = df2.set_index("Räume in Funktionsbereichen")
+        df1["Tabelle"] = selected_file1
+        df2["Tabelle"] = selected_file2
 
-            # Gemeinsame & individuelle Zeilen identifizieren
-            common_rows = df1_grouped.index.intersection(df2_grouped.index)
-            unique_to_df1 = df1_grouped.index.difference(df2_grouped.index)
-            unique_to_df2 = df2_grouped.index.difference(df1_grouped.index)
+        # Beide Tabellen nach "Räume in Funktionsbereichen" gruppieren
+        df1_grouped = df1.set_index("Räume in Funktionsbereichen")
+        df2_grouped = df2.set_index("Räume in Funktionsbereichen")
 
-            # HTML für Vergleichstabelle erstellen
-            comparison_html = """
-            <table>
-                <tr>
-                    <th>Vergleich</th>
-                    <th>Räume in Funktionsbereichen</th>
-                    <th>Tabelle</th>
-            """
+        # Gemeinsame & individuelle Zeilen identifizieren
+        common_rows = df1_grouped.index.intersection(df2_grouped.index)
+        unique_to_df1 = df1_grouped.index.difference(df2_grouped.index)
+        unique_to_df2 = df2_grouped.index.difference(df1_grouped.index)
 
-            # Spaltenüberschriften aus der ersten Datei übernehmen
+        # HTML für Vergleichstabelle erstellen
+        comparison_html = """
+        <table>
+            <tr>
+                <th>Vergleich</th>
+                <th>Räume in Funktionsbereichen</th>
+                <th>Tabelle</th>
+        """
+
+        # Spaltenüberschriften aus der ersten Datei übernehmen
+        for col in df1.columns:
+            comparison_html += f"<th>{col}</th>"
+        comparison_html += "</tr>"
+
+        # **Fix für Zeilen, die nur eine Instanz haben**
+        def ensure_dataframe(row):
+            return row.to_frame().T if isinstance(row, pd.Series) else row
+
+        # **Gemeinsame Zeilen (Untereinander)**
+        for row in common_rows:
+            row1 = ensure_dataframe(df1_grouped.loc[row])
+            row2 = ensure_dataframe(df2_grouped.loc[row])
+
+            row_styles = []
+            match_status = "🟢"
+
+            for col in row1.columns:
+                if col not in row2.columns:
+                    continue
+                val1, val2 = row1[col].values[0], row2[col].values[0]
+
+                if val1 == val2:
+                    row_styles.append(f"<td style='background-color: #90EE90;'>{val1}</td>")
+                else:
+                    row_styles.append(f"<td style='background-color: #FF4500; font-weight:bold;'>{val1} | {val2}</td>")
+                    match_status = "🟠"
+
+            row_html = f"<tr><td>{match_status}</td><td>{row}</td><td>{selected_file1}</td>{''.join(row_styles)}</tr>"
+            comparison_html += row_html
+            row_html = f"<tr><td>{match_status}</td><td>{row}</td><td>{selected_file2}</td>{''.join(row_styles)}</tr>"
+            comparison_html += row_html
+
+        # **Zeilen, die nur in der ersten Tabelle existieren**
+        for row in unique_to_df1:
+            row1 = ensure_dataframe(df1_grouped.loc[row])
+            row_html = f"<tr><td>🔴</td><td>{row}</td><td>{selected_file1}</td>"
             for col in df1.columns:
-                comparison_html += f"<th>{col}</th>"
-            comparison_html += "</tr>"
+                row_html += f"<td>{row1[col].values[0] if col in row1.columns else '—'}</td>"
+            row_html += "</tr>"
+            comparison_html += row_html
 
-            # **Fix für Zeilen, die nur eine Instanz haben**
-            def ensure_dataframe(row):
-                return row.to_frame().T if isinstance(row, pd.Series) else row
+        # **Zeilen, die nur in der zweiten Tabelle existieren**
+        for row in unique_to_df2:
+            row2 = ensure_dataframe(df2_grouped.loc[row])
+            row_html = f"<tr><td>🔴</td><td>{row}</td><td>{selected_file2}</td>"
+            for col in df2.columns:
+                row_html += f"<td>{row2[col].values[0] if col in row2.columns else '—'}</td>"
+            row_html += "</tr>"
+            comparison_html += row_html
 
-            # **Gemeinsame Zeilen (Untereinander)**
-            for row in common_rows:
-                row1 = ensure_dataframe(df1_grouped.loc[row])
-                row2 = ensure_dataframe(df2_grouped.loc[row])
+        comparison_html += "</table>"
 
-                row_styles = []
-                match_status = "🟢"
+        st.subheader("📊 Vergleich der Tabellen")
+        st.markdown(comparison_html, unsafe_allow_html=True)
 
-                for col in row1.columns:
-                    if col not in row2.columns:
-                        continue
-                    val1, val2 = row1[col].values[0], row2[col].values[0]
-
-                    if val1 == val2:
-                        row_styles.append(f"<td style='background-color: #90EE90;'>{val1}</td>")
-                    else:
-                        row_styles.append(f"<td style='background-color: #FF4500; font-weight:bold;'>{val1} | {val2}</td>")
-                        match_status = "🟠"
-
-                row_html = f"<tr><td>{match_status}</td><td>{row}</td><td>{selected_file1}</td>{''.join(row_styles)}</tr>"
-                comparison_html += row_html
-                row_html = f"<tr><td>{match_status}</td><td>{row}</td><td>{selected_file2}</td>{''.join(row_styles)}</tr>"
-                comparison_html += row_html
-
-            # **Zeilen, die nur in der ersten Tabelle existieren**
-            for row in unique_to_df1:
-                row1 = ensure_dataframe(df1_grouped.loc[row])
-                row_html = f"<tr><td>🔴</td><td>{row}</td><td>{selected_file1}</td>"
-                for col in df1.columns:
-                    row_html += f"<td>{row1[col].values[0] if col in row1.columns else '—'}</td>"
-                row_html += "</tr>"
-                comparison_html += row_html
-
-            # **Zeilen, die nur in der zweiten Tabelle existieren**
-            for row in unique_to_df2:
-                row2 = ensure_dataframe(df2_grouped.loc[row])
-                row_html = f"<tr><td>🔴</td><td>{row}</td><td>{selected_file2}</td>"
-                for col in df2.columns:
-                    row_html += f"<td>{row2[col].values[0] if col in row2.columns else '—'}</td>"
-                row_html += "</tr>"
-                comparison_html += row_html
-
-            comparison_html += "</table>"
-
-            st.subheader("📊 Vergleich der Tabellen")
-            st.markdown(comparison_html, unsafe_allow_html=True)
-
-        except Exception as e:
-            st.error(f"❌ Fehler beim Einlesen der Tabellen: {str(e)}")
+    except Exception as e:
+        st.error(f"❌ Fehler beim Einlesen der Tabellen: {str(e)}")
