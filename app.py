@@ -1,26 +1,84 @@
 import streamlit as st
 import pandas as pd
 
-# 🏥 Titelbild laden und zentrieren
+# 🔗 GitHub-Repository mit den Excel-Dateien (ANPASSEN falls nötig)
+GITHUB_BASE_URL = "https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/"
+
+# 📂 Liste der Excel-Dateien
+EXCEL_FILES = [
+    "2.02_Woechnerinnen-_und_Neugeborenenpflege.xlsx",
+    "2.03_Intensivmedizin.xlsx",
+    "2.04_Dialyse.xlsx",
+    "2.05_Saeuglings-,_Kinder-_und_Jugendkrankenpflege.xlsx",
+    "2.06_Isolationskrankenpflege.xlsx",
+    "2.07_Pflege_psychisch_Kranker.xlsx",
+    "2.08_Nuklearmedizin.xlsx",
+    "2.09_Aufnahme.xlsx",
+    "2.11_Geriatrie.xlsx",
+    "2.12_Palliativmedizin.xlsx",
+    "2.13_Rehabilitation.xlsx",
+    "2.14_Komfortstation.xlsx",
+]
+
+# 🌟 Stil-Optimierung für die App
 st.markdown(
     """
     <style>
-    .centered-image {
-        display: flex;
-        justify-content: center;
+    /* Zentriert die gesamte App */
+    .block-container {
+        max-width: 1200px;
+        margin: auto;
+        text-align: center;
+    }
+
+    /* Header Styling */
+    .header-container {
+        text-align: center;
+        padding: 20px;
+    }
+    .header-title {
+        font-size: 50px;
+        font-weight: bold;
+        color: white;
+        background: linear-gradient(90deg, #1E90FF, #4B0082);
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 2px 2px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Bild richtig zentrieren */
+    .centered-image img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Vergleichstabelle stylen */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: auto;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+    th {
+        background-color: #f4f4f4;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# Bild zentriert mit `st.image()` laden
-st.markdown('<div class="centered-image">', unsafe_allow_html=True)
-st.image("IMG_07283.PNG", width=300)  # Stelle sicher, dass das Bild im App-Ordner liegt
-st.markdown('</div>', unsafe_allow_html=True)
+# 📌 Stilvollen Header anzeigen
+st.markdown('<div class="header-container"><div class="header-title">MediMetrics 🚀</div></div>', unsafe_allow_html=True)
 
-# Titel der Anwendung
-st.title("MediMetrics")
+# 📌 Bild zentrieren
+st.markdown('<div class="centered-image">', unsafe_allow_html=True)
+st.image("IMG_07283.PNG", width=300)
+st.markdown('</div>', unsafe_allow_html=True)
 
 # 🦠 **Szenario Pandemie** (Schöner formatiert)
 st.markdown("""
@@ -43,70 +101,6 @@ st.markdown("""
     die die Pflege von erkrankten Patienten sicherstellen. Dazu können kurzzeitig andere Flächen umgenutzt werden.
     </p>
     """, unsafe_allow_html=True)
-
-
-
-# 🔗 GitHub-Repository mit den Excel-Dateien (ANPASSEN falls nötig)
-GITHUB_BASE_URL = "https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/"
-
-# 📂 Liste der Excel-Dateien aus deinem Screenshot
-EXCEL_FILES = [
-    "2.02_Woechnerinnen-_und_Neugeborenenpflege.xlsx",
-    "2.03_Intensivmedizin.xlsx",
-    "2.04_Dialyse.xlsx",
-    "2.05_Saeuglings-,_Kinder-_und_Jugendkrankenpflege.xlsx",
-    "2.06_Isolationskrankenpflege.xlsx",
-    "2.07_Pflege_psychisch_Kranker.xlsx",
-    "2.08_Nuklearmedizin.xlsx",
-    "2.09_Aufnahme.xlsx",
-    "2.11_Geriatrie.xlsx",
-    "2.12_Palliativmedizin.xlsx",
-    "2.13_Rehabilitation.xlsx",
-    "2.14_Komfortstation.xlsx",
-]
-
-# 🏥 CSS für komplette Zentrierung
-st.markdown(
-    """
-    <style>
-    /* Zentriert die gesamte App */
-    .block-container {
-        max-width: 1200px;
-        margin: auto;
-        text-align: center;
-    }
-
-    /* Zentriert alle Tabellen */
-    .stDataFrame {
-        margin: auto;
-    }
-
-    /* Zentriert alle Dropdowns */
-    div[data-testid="stSelectbox"] {
-        text-align: center;
-        margin: auto;
-    }
-
-    /* Vergleichstabelle stylen */
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: auto;
-    }
-    th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: center;
-    }
-    th {
-        background-color: #f4f4f4;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-st.title("📊 MediMetrics – Vergleich von Krankenhaus-Daten")
 
 # 📂 **Erste Excel-Datei auswählen**
 st.subheader("📂 Wähle die erste Excel-Datei")
@@ -171,7 +165,7 @@ if selected_file1 and selected_file2:
                 row2 = row2.to_frame().T if isinstance(row2, pd.Series) else row2
 
                 row_styles = []
-                match_status = "🟢"  # Standard auf "komplett gleich"
+                match_status = "🟢"
 
                 row_html = f"<tr><td>{match_status}</td><td>{row}</td>"
 
@@ -200,7 +194,6 @@ if selected_file1 and selected_file2:
 
             comparison_html += "</table>"
 
-            # **Vergleichstabelle in Streamlit anzeigen**
             st.subheader("📊 Vergleich der Tabellen")
             st.markdown(comparison_html, unsafe_allow_html=True)
 
