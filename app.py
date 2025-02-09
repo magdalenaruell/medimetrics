@@ -124,7 +124,7 @@ if selected_file1 and selected_file2:
         st.error(f"❌ Fehler beim Laden der Dateien: {str(e)}")
         st.stop()
     
-    # 📑 **Tabellenblatt für jede Datei auswählen**
+       # 📑 **Tabellenblatt für jede Datei auswählen**
     st.subheader("📄 Wähle ein Tabellenblatt für jede Datei")
     selected_sheet1 = st.selectbox("📄 Tabellenblatt für die erste Datei:", sheet_names1, key="sheet1")
     selected_sheet2 = st.selectbox("📄 Tabellenblatt für die zweite Datei:", sheet_names2, key="sheet2")
@@ -134,7 +134,7 @@ if selected_file1 and selected_file2:
             df1 = pd.read_excel(xls1, sheet_name=selected_sheet1, engine="openpyxl")
             df2 = pd.read_excel(xls2, sheet_name=selected_sheet2, engine="openpyxl")
 
-            # Sicherstellen, dass Spalte "Räume in Funktionsbereichen" existiert
+            # Sicherstellen, dass Spalte B existiert
             if "Räume in Funktionsbereichen" not in df1.columns or "Räume in Funktionsbereichen" not in df2.columns:
                 st.error("❌ Die Spalte 'Räume in Funktionsbereichen' (Spalte B) existiert nicht in einer oder beiden Dateien.")
                 st.stop()
@@ -162,9 +162,13 @@ if selected_file1 and selected_file2:
                 </tr>
             """
 
+            # **Fix für Zeilen, die nur eine Instanz haben**
+            def ensure_dataframe(row):
+                return row.to_frame().T if isinstance(row, pd.Series) else row
+
             for row in common_rows:
-                row1 = df1_grouped.loc[row]
-                row2 = df2_grouped.loc[row]
+                row1 = ensure_dataframe(df1_grouped.loc[row])
+                row2 = ensure_dataframe(df2_grouped.loc[row])
 
                 row_styles = []
                 match_status = "🟢"
@@ -186,13 +190,13 @@ if selected_file1 and selected_file2:
                 comparison_html += row_html
 
             for row in unique_to_df1:
-                row1 = df1_grouped.loc[row]
-                row_html = f"<tr><td>🔴</td><td>{row}</td><td>{selected_file1}</td><td>{row1.to_string()}</td></tr>"
+                row1 = ensure_dataframe(df1_grouped.loc[row])
+                row_html = f"<tr><td>🔴</td><td>{row}</td><td>{selected_file1}</td><td>{row1.to_html()}</td></tr>"
                 comparison_html += row_html
 
             for row in unique_to_df2:
-                row2 = df2_grouped.loc[row]
-                row_html = f"<tr><td>🔴</td><td>{row}</td><td>{selected_file2}</td><td>{row2.to_string()}</td></tr>"
+                row2 = ensure_dataframe(df2_grouped.loc[row])
+                row_html = f"<tr><td>🔴</td><td>{row}</td><td>{selected_file2}</td><td>{row2.to_html()}</td></tr>"
                 comparison_html += row_html
 
             comparison_html += "</table>"
