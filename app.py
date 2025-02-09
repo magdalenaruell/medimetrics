@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-# 🔗 GitHub-Repository mit den Excel-Dateien (ANPASSEN falls nötig)
+# 🔗 GitHub-Repository mit den Excel-Dateien
 GITHUB_BASE_URL = "https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/"
 
 # 📂 Liste der Excel-Dateien
@@ -20,11 +20,10 @@ EXCEL_FILES = [
     "2.14_Komfortstation.xlsx",
 ]
 
-
 # 🌟 Stil-Optimierung für die App
 st.markdown(
     """
-     <style>
+    <style>
     .header-container {
         text-align: center;
         padding: 30px;
@@ -45,13 +44,6 @@ st.markdown(
         margin-top: 10px;
     }
 
-    /* Bild richtig zentrieren */
-    .centered-image img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
     /* Vergleichstabelle stylen */
     table {
         width: 100%;
@@ -66,20 +58,30 @@ st.markdown(
     th {
         background-color: #f4f4f4;
     }
+
+    /* Footer */
+    .footer {
+        text-align: center;
+        font-size: 14px;
+        color: gray;
+        margin-top: 50px;
+    }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# 📌 Bild zentrieren
-st.markdown('<div class="centered-image">', unsafe_allow_html=True)
-st.image("IMG_07283.PNG", width=300)
-st.markdown('</div>', unsafe_allow_html=True)
-
 # 📌 Header anzeigen
-st.markdown('<div class="header-container"><div class="header-title">🏥 MediMetrics – Flächenmanagement</div></div>', unsafe_allow_html=True)
-st.markdown('<div class="header-container"><div class
-            
+st.markdown(
+    """
+    <div class="header-container">
+        <div class="header-title">🏥 MediMetrics – Flächenmanagement</div>
+        <div class="header-subtitle">Optimierung der Raum- & Flächennutzung für maximale Effizienz im Krankenhaus</div>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+       
 # 🦠 **Szenario Pandemie** (Schöner formatiert)
 st.markdown("""
     <h3>🦠 Szenario: Pandemie</h3>
