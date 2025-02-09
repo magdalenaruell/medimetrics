@@ -124,7 +124,7 @@ if selected_file1 and selected_file2:
         st.error(f"❌ Fehler beim Laden der Dateien: {str(e)}")
         st.stop()
     
-       # 📑 **Tabellenblatt für jede Datei auswählen**
+     # 📑 **Tabellenblatt für jede Datei auswählen**
     st.subheader("📄 Wähle ein Tabellenblatt für jede Datei")
     selected_sheet1 = st.selectbox("📄 Tabellenblatt für die erste Datei:", sheet_names1, key="sheet1")
     selected_sheet2 = st.selectbox("📄 Tabellenblatt für die zweite Datei:", sheet_names2, key="sheet2")
@@ -134,7 +134,7 @@ if selected_file1 and selected_file2:
             df1 = pd.read_excel(xls1, sheet_name=selected_sheet1, engine="openpyxl")
             df2 = pd.read_excel(xls2, sheet_name=selected_sheet2, engine="openpyxl")
 
-            # Sicherstellen, dass Spalte B existiert
+            # Sicherstellen, dass Spalte "Räume in Funktionsbereichen" existiert
             if "Räume in Funktionsbereichen" not in df1.columns or "Räume in Funktionsbereichen" not in df2.columns:
                 st.error("❌ Die Spalte 'Räume in Funktionsbereichen' (Spalte B) existiert nicht in einer oder beiden Dateien.")
                 st.stop()
@@ -158,14 +158,18 @@ if selected_file1 and selected_file2:
                     <th>Vergleich</th>
                     <th>Räume in Funktionsbereichen</th>
                     <th>Tabelle</th>
-                    <th>Details</th>
-                </tr>
             """
+
+            # Spaltenüberschriften aus der ersten Datei übernehmen
+            for col in df1.columns:
+                comparison_html += f"<th>{col}</th>"
+            comparison_html += "</tr>"
 
             # **Fix für Zeilen, die nur eine Instanz haben**
             def ensure_dataframe(row):
                 return row.to_frame().T if isinstance(row, pd.Series) else row
 
+            # **Gemeinsame Zeilen (Untereinander)**
             for row in common_rows:
                 row1 = ensure_dataframe(df1_grouped.loc[row])
                 row2 = ensure_dataframe(df2_grouped.loc[row])
@@ -189,14 +193,22 @@ if selected_file1 and selected_file2:
                 row_html = f"<tr><td>{match_status}</td><td>{row}</td><td>{selected_file2}</td>{''.join(row_styles)}</tr>"
                 comparison_html += row_html
 
+            # **Zeilen, die nur in der ersten Tabelle existieren**
             for row in unique_to_df1:
                 row1 = ensure_dataframe(df1_grouped.loc[row])
-                row_html = f"<tr><td>🔴</td><td>{row}</td><td>{selected_file1}</td><td>{row1.to_html()}</td></tr>"
+                row_html = f"<tr><td>🔴</td><td>{row}</td><td>{selected_file1}</td>"
+                for col in df1.columns:
+                    row_html += f"<td>{row1[col].values[0] if col in row1.columns else '—'}</td>"
+                row_html += "</tr>"
                 comparison_html += row_html
 
+            # **Zeilen, die nur in der zweiten Tabelle existieren**
             for row in unique_to_df2:
                 row2 = ensure_dataframe(df2_grouped.loc[row])
-                row_html = f"<tr><td>🔴</td><td>{row}</td><td>{selected_file2}</td><td>{row2.to_html()}</td></tr>"
+                row_html = f"<tr><td>🔴</td><td>{row}</td><td>{selected_file2}</td>"
+                for col in df2.columns:
+                    row_html += f"<td>{row2[col].values[0] if col in row2.columns else '—'}</td>"
+                row_html += "</tr>"
                 comparison_html += row_html
 
             comparison_html += "</table>"
