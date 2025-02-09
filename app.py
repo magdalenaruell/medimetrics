@@ -64,28 +64,99 @@ EXCEL_FILES = [
     "2.14_Komfortstation.xlsx",
 ]
 
-# 📌 **Excel-Datei auswählen**
-st.subheader("📂 Wähle eine Excel-Datei")
-selected_file = st.selectbox("📑 Wähle eine Datei:", EXCEL_FILES)
+# 📂 **Erste Excel-Datei auswählen**
+st.subheader("📂 Wähle die erste Excel-Datei")
+selected_file1 = st.selectbox("📑 Erste Datei auswählen:", EXCEL_FILES, key="file1")
 
-if selected_file:
-    file_url = GITHUB_BASE_URL + selected_file  # URL zur Datei generieren
+# 📂 **Zweite Excel-Datei auswählen**
+st.subheader("📂 Wähle die zweite Excel-Datei")
+selected_file2 = st.selectbox("📑 Zweite Datei auswählen:", [f for f in EXCEL_FILES if f != selected_file1], key="file2")
+
+if selected_file1 and selected_file2:
+    file_url1 = GITHUB_BASE_URL + selected_file1
+    file_url2 = GITHUB_BASE_URL + selected_file2
 
     try:
-        # Lade die Excel-Datei direkt aus GitHub
-        xls = pd.ExcelFile(file_url)
-        sheet_names = xls.sheet_names
-        st.success(f"📄 Datei erfolgreich geladen: `{selected_file}`")
+        xls1 = pd.ExcelFile(file_url1)
+        xls2 = pd.ExcelFile(file_url2)
+        sheet_names1 = xls1.sheet_names
+        sheet_names2 = xls2.sheet_names
+        st.success(f"📄 Dateien erfolgreich geladen: `{selected_file1}` & `{selected_file2}`")
     except Exception as e:
-        st.error(f"❌ Fehler beim Laden der Datei: {str(e)}")
+        st.error(f"❌ Fehler beim Laden der Dateien: {str(e)}")
         st.stop()
     
-    # 📊 **Tabellenblatt auswählen**
-    st.subheader("📄 Wähle ein Tabellenblatt")
-    selected_sheet = st.selectbox("📄 Tabellenblatt:", sheet_names)
+    # 📑 **Tabellenblatt für jede Datei auswählen**
+    st.subheader("📄 Wähle ein Tabellenblatt für jede Datei")
+    selected_sheet1 = st.selectbox("📄 Tabellenblatt für die erste Datei:", sheet_names1, key="sheet1")
+    selected_sheet2 = st.selectbox("📄 Tabellenblatt für die zweite Datei:", sheet_names2, key="sheet2")
 
-    # 📊 **Daten aus dem gewählten Tabellenblatt anzeigen**
-    if selected_sheet:
-        df = pd.read_excel(xls, sheet_name=selected_sheet)
-        st.subheader(f"📊 Daten aus: {selected_sheet} in `{selected_file}`")
-        st.dataframe(df, use_container_width=True, height=500)
+    if selected_sheet1 and selected_sheet2:
+        try:
+            df1 = pd.read_excel(xls1, sheet_name=selected_sheet1, engine="openpyxl")
+            df2 = pd.read_excel(xls2, sheet_name=selected_sheet2, engine="openpyxl")
+            
+            # Sicherstellen, dass Spalte B existiert
+            if "Räume in Funktionsbereichen" not in df1.columns or "Räume in Funktionsbereichen" not in df2.columns:
+                st.error("❌ Die Spalte 'Räume in Funktionsbereichen' (Spalte B) existiert nicht in einer oder beiden Dateien.")
+                st.stop()
+
+            # Daten nach "Räume in Funktionsbereichen" zusammenfassen
+            df1_grouped = df1.set_index("Räume in Funktionsbereichen")
+            df2_grouped = df2.set_index("Räume in Funktionsbereichen")
+
+            # Gemeinsame Zeilen identifizieren
+            common_rows = df1_grouped.index.intersection(df2_grouped.index)
+
+            # Vergleich der Tabellen
+            comparison_results = []
+            for row in common_rows:
+                row1 = df1_grouped.loc[row]
+                row2 = df2_grouped.loc[row]
+
+                # Falls nur eine Zeile, sicherstellen, dass sie als DataFrame bleibt
+                row1 = row1.to_frame().T if isinstance(row1, pd.Series) else row1
+                row2 = row2.to_frame().T if isinstance(row2, pd.Series) else row2
+
+                row_styles = []
+                match_status = "🟢"  # Standard auf "komplett gleich"
+
+                for col in row1.columns:
+                    if col not in row2.columns:
+                        continue
+                    val1, val2 = row1[col].values[0], row2[col].values[0]
+
+                    if pd.isna(val1) and pd.isna(val2):
+                        row_styles.append(f"<td>{val1}</td>")
+                    elif val1 == val2:
+                        row_styles.append(f"<td style='background-color: #90EE90;'>{val1}</td>")  # Grün für gleiche Werte
+                    else:
+                        row_styles.append(f"<td style='background-color: #FF4500; font-weight:bold;'>{val1} | {val2}</td>")  # Rot für unterschiedliche Werte
+                        match_status = "🟠"  # Falls Unterschiede existieren
+
+                # Falls die gesamte Zeile gleich ist, bleibt "🟢", ansonsten "🟠"
+                if all("#90EE90" in s for s in row_styles):
+                    match_status = "🟢"
+                elif any("#FF4500" in s for s in row_styles):
+                    match_status = "🟠"
+                else:
+                    match_status = "🔴"
+
+                comparison_results.append((match_status, row, row_styles))
+
+            # Ergebnisse in HTML anzeigen
+            if comparison_results:
+                styled_rows = [f"<tr><td>{status}</td><td>{title}</td>{''.join(row_styles)}</tr>" for status, title, row_styles in comparison_results]
+                table_html = f"""
+                <table>
+                    <tr>
+                        <th>Vergleich</th>
+                        <th>Räume in Funktionsbereichen</th>
+                        <th>Details</th>
+                    </tr>
+                    {''.join(styled_rows)}
+                </table>
+                """
+                st.markdown(table_html, unsafe_allow_html=True)
+        except Exception as e:
+            st.error(f"❌ Fehler beim Einlesen der Tabellen: {str(e)}")
