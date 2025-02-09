@@ -39,7 +39,7 @@ st.markdown(
     /* Header Styling */
     .header-container {
         text-align: center;
-        padding: 70px;
+        padding: 10px;
     }
 
     /* Logo zentrieren */
@@ -50,10 +50,10 @@ st.markdown(
     }
 
     .logo {
-        width: 120px;
+        width: 150px;
         background: white;
         padding: 8px;
-        border-radius: 50%;
+        border-radius: 80%;
         box-shadow: 2px 2px 8px rgba(0,0,0,0.15);
     }
 
