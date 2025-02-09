@@ -86,7 +86,7 @@ if selected_file1 and selected_file2:
         st.error(f"❌ Fehler beim Laden der Dateien: {str(e)}")
         st.stop()
     
-    # 📑 **Tabellenblatt für jede Datei auswählen**
+   # 📑 **Tabellenblatt für jede Datei auswählen**
     st.subheader("📄 Wähle ein Tabellenblatt für jede Datei")
     selected_sheet1 = st.selectbox("📄 Tabellenblatt für die erste Datei:", sheet_names1, key="sheet1")
     selected_sheet2 = st.selectbox("📄 Tabellenblatt für die zweite Datei:", sheet_names2, key="sheet2")
@@ -95,7 +95,7 @@ if selected_file1 and selected_file2:
         try:
             df1 = pd.read_excel(xls1, sheet_name=selected_sheet1, engine="openpyxl")
             df2 = pd.read_excel(xls2, sheet_name=selected_sheet2, engine="openpyxl")
-            
+
             # Sicherstellen, dass Spalte B existiert
             if "Räume in Funktionsbereichen" not in df1.columns or "Räume in Funktionsbereichen" not in df2.columns:
                 st.error("❌ Die Spalte 'Räume in Funktionsbereichen' (Spalte B) existiert nicht in einer oder beiden Dateien.")
@@ -108,7 +108,7 @@ if selected_file1 and selected_file2:
             # Gemeinsame Zeilen identifizieren
             common_rows = df1_grouped.index.intersection(df2_grouped.index)
 
-            # Vergleich der Tabellen
+            # Neue DataFrame für Vergleich erstellen
             comparison_results = []
             for row in common_rows:
                 row1 = df1_grouped.loc[row]
@@ -144,7 +144,20 @@ if selected_file1 and selected_file2:
 
                 comparison_results.append((match_status, row, row_styles))
 
-            # Ergebnisse in HTML anzeigen
+            # 📌 Tabellen nebeneinander anzeigen
+            st.subheader(f"📊 Vergleich der Tabellen: {selected_file1} vs. {selected_file2}")
+
+            col1, col2 = st.columns(2)
+
+            with col1:
+                st.subheader(f"📄 {selected_file1}")
+                st.dataframe(df1)
+
+            with col2:
+                st.subheader(f"📄 {selected_file2}")
+                st.dataframe(df2)
+
+            # 📌 Ergebnisse in HTML anzeigen
             if comparison_results:
                 styled_rows = [f"<tr><td>{status}</td><td>{title}</td>{''.join(row_styles)}</tr>" for status, title, row_styles in comparison_results]
                 table_html = f"""
@@ -158,5 +171,6 @@ if selected_file1 and selected_file2:
                 </table>
                 """
                 st.markdown(table_html, unsafe_allow_html=True)
+
         except Exception as e:
             st.error(f"❌ Fehler beim Einlesen der Tabellen: {str(e)}")
