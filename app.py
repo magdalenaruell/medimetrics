@@ -20,30 +20,29 @@ EXCEL_FILES = [
     "2.14_Komfortstation.xlsx",
 ]
 
+
 # 🌟 Stil-Optimierung für die App
 st.markdown(
     """
-    <style>
-    /* Zentriert die gesamte App */
-    .block-container {
-        max-width: 1200px;
-        margin: auto;
-        text-align: center;
-    }
-
-    /* Header Styling */
+     <style>
     .header-container {
         text-align: center;
-        padding: 20px;
+        padding: 30px;
     }
     .header-title {
-        font-size: 50px;
+        font-size: 45px;
         font-weight: bold;
         color: white;
-        background: linear-gradient(90deg, #1E90FF, #4B0082);
+        background: linear-gradient(90deg, #0072ff, #00c6ff);
         padding: 15px;
-        border-radius: 10px;
-        box-shadow: 2px 2px 15px rgba(0,0,0,0.3);
+        border-radius: 15px;
+        box-shadow: 4px 4px 15px rgba(0,0,0,0.3);
+        display: inline-block;
+    }
+    .header-subtitle {
+        font-size: 18px;
+        color: #333;
+        margin-top: 10px;
     }
 
     /* Bild richtig zentrieren */
@@ -77,9 +76,10 @@ st.markdown('<div class="centered-image">', unsafe_allow_html=True)
 st.image("IMG_07283.PNG", width=300)
 st.markdown('</div>', unsafe_allow_html=True)
 
-# 📌 Stilvollen Header anzeigen
-st.markdown('<div class="header-container"><div class="header-title">MediMetrics </div></div>', unsafe_allow_html=True)
-
+# 📌 Header anzeigen
+st.markdown('<div class="header-container"><div class="header-title">🏥 MediMetrics – Flächenmanagement</div></div>', unsafe_allow_html=True)
+st.markdown('<div class="header-container"><div class
+            
 # 🦠 **Szenario Pandemie** (Schöner formatiert)
 st.markdown("""
     <h3>🦠 Szenario: Pandemie</h3>
