@@ -45,25 +45,23 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 
-# 🔗 GitHub-Repository, in dem die Excel-Dateien liegen
-GITHUB_BASE_URL = "https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/"  # <-- ÄNDERE das Repo
+# 🔗 GitHub-Repository mit den Excel-Dateien (ANPASSEN falls nötig)
+GITHUB_BASE_URL = "https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/"  # Ändere das Repo falls nötig
 
-# 📂 Liste der Excel-Dateien im GitHub-Repo (MUSS manuell gepflegt werden oder mit einer API automatisiert werden)
+# 📂 Liste der Excel-Dateien aus deinem Screenshot
 EXCEL_FILES = [
-    "01_WebAnwendung_250128_NBO_DIN.xlsx",
-    "02_WebAnwendung_250128_NBO_DIN.xlsx",
-    "03_WebAnwendung_250128_NBO_DIN.xlsx",
-    "04_WebAnwendung_250128_NBO_DIN.xlsx",
-    "05_WebAnwendung_250128_NBO_DIN.xlsx",
-    "06_WebAnwendung_250128_NBO_DIN.xlsx",
-    "07_WebAnwendung_250128_NBO_DIN.xlsx",
-    "08_WebAnwendung_250128_NBO_DIN.xlsx",
-    "09_WebAnwendung_250128_NBO_DIN.xlsx",
-    "10_WebAnwendung_250128_NBO_DIN.xlsx",
-    "11_WebAnwendung_250128_NBO_DIN.xlsx",
-    "12_WebAnwendung_250128_NBO_DIN.xlsx",
-    "13_WebAnwendung_250128_NBO_DIN.xlsx",
-    "14_WebAnwendung_250128_NBO_DIN.xlsx",
+    "2.02_Wöchnerinnen-_und_Neugeborenenpflege.xlsx",
+    "2.03_Intensivmedizin.xlsx",
+    "2.04_Dialyse.xlsx",
+    "2.05_Säuglings-,_Kinder-_und_Jugendkrankenpflege.xlsx",
+    "2.06_Isolationskrankenpflege.xlsx",
+    "2.07_Pflege_psychisch_Kranker.xlsx",
+    "2.08_Nuklearmedizin.xlsx",
+    "2.09_Aufnahme.xlsx",
+    "2.11_Geriatrie.xlsx",
+    "2.12_Palliativmedizin.xlsx",
+    "2.13_Rehabilitation.xlsx",
+    "2.14_Komfortstation.xlsx",
 ]
 
 # 📌 **Excel-Datei auswählen**
@@ -85,7 +83,6 @@ if selected_file:
     # 📊 **Tabellenblatt auswählen**
     st.subheader("📄 Wähle ein Tabellenblatt")
     selected_sheet = st.selectbox("📄 Tabellenblatt:", sheet_names)
-
 
     # 📊 **Daten aus dem gewählten Tabellenblatt anzeigen**
     if selected_sheet:
