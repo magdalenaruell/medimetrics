@@ -114,6 +114,7 @@ st.markdown(
         background: #1A237E;
         color: white;
         padding: 10px;
+        margin-top: 0px;
         font-size: 14px;
     }
    
