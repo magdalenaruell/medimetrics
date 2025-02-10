@@ -32,7 +32,7 @@ st.markdown(
         margin: 0;
     }
 
-   /* Header-Hintergrund flächendeckend */
+/* Header-Hintergrund flächendeckend */
 .header-background {
     width: 100%;
     height: 500px;
@@ -42,8 +42,8 @@ st.markdown(
     align-items: center;
     position: relative;
     box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
-    margin-bottom: -50px; /* NEU: Entfernt Abstand nach unten */
-    padding-bottom: 0px; /* NEU: Verhindert Padding */
+    margin-bottom: -50px;
+    padding-bottom: 0px;
 }
 
 /* Logo & Titel Container */
@@ -52,20 +52,20 @@ st.markdown(
     color: white;
     font-family: 'Arial', sans-serif;
     position: absolute;
-    top: 50%;
+    top: 40%;  /* Verschoben nach oben */
     left: 50%;
     transform: translate(-50%, -50%);
-    margin-bottom: 30px; /* NEU */
+    margin-top: -30px; /* Extra nach oben geschoben */
 }
 
 /* Logo Styling */
 .logo {
     width: 120px;
     height: 120px;
-    margin-top: -20px;
+    margin-top: -50px; /* Höher in den Verlauf setzen */
     border-radius: 50%;
-    background-color: transparent; /* Hintergrund entfernen */
-    mix-blend-mode: multiply; /* Entfernt helle Hintergründe */
+    background-color: transparent;
+    mix-blend-mode: multiply;
     padding: 0px;
     box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
 }
