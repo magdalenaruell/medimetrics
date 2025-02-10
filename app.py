@@ -31,7 +31,7 @@ st.markdown(
 .header-background {
     width: 100%;
     height: 500px; /* Mehr Höhe für das Logo & Titel */
-    background: linear-gradient(to right, #1A237E, #4A8C45);
+    background: linear-gradient(to right, #1A237E, #A9E0E8, #4A8C45);
     display: flex;
     justify-content: center;
     align-items: center;
