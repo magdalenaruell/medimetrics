@@ -89,6 +89,7 @@ st.markdown(
     color: white;
     padding: 15px;
     margin-top: 180px;
+    margin-bottom: 10px; 
     font-size: 14px;
     position: relative; /* Stellt sicher, dass der Footer unten bleibt */
 }
