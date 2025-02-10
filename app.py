@@ -6,6 +6,7 @@ GITHUB_BASE_URL = "https://raw.githubusercontent.com/magdalenaruell/medimetrics/
 
 # 📂 Liste der Excel-Dateien
 EXCEL_FILES = [
+    "2.01_Allgemeine_Pflege.xlsx",
     "2.02_Woechnerinnen-_und_Neugeborenenpflege.xlsx",
     "2.03_Intensivmedizin.xlsx",
     "2.04_Dialyse.xlsx",
