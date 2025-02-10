@@ -69,8 +69,8 @@ st.markdown(
 .header-title {
     font-size: 65px;
     font-weight: bold;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-    margin-top: -60px; /* Höher setzen */
+    text-shadow: 4px 4px 16px rgba(0,0,0,0.3);
+    margin-top: -10px; /* Höher setzen */
 }
 
 /* Untertitel */
