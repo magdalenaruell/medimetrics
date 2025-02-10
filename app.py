@@ -21,53 +21,47 @@ EXCEL_FILES = [
     "2.14_Komfortstation.xlsx",
 ]
 
-# 🔥 Vollbild-Optimierung mit CSS (mit integriertem Logo & Titel)
+# 🔥 Vollbild-Optimierung mit CSS
 st.markdown(
     """
     <style>
-    /* Volle Breite für das Layout */
+    /* Gesamt-Layout auf volle Breite setzen */
     .main-container {
         width: 100%;
         padding: 0;
         margin: 0;
     }
 
-    /* Header-Block mit Logo und Titel */
+    /* Header-Hintergrund flächendeckend */
     .header-background {
         width: 100%;
         height: 250px;
         background: linear-gradient(to right, #1A237E, #4A8C45);
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+
+    /* Logo & Titel im Header */
+    .header-content {
         text-align: center;
         color: white;
         font-family: 'Arial', sans-serif;
-        position: relative;
     }
 
-    /* Logo zentriert */
-    .logo {
-        width: 100px;
-        height: 100px;
-        margin-bottom: 10px;
-    }
-
-    /* Titel direkt in den Header */
     .header-title {
         font-size: 55px;
         font-weight: bold;
-        text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
     }
 
     .header-subtitle {
-        font-size: 20px;
+        font-size: 22px;
         font-weight: 300;
         color: #f0f0f0;
     }
 
-    /* Infobox auf volle Breite */
+    /* Grüne Infobox über volle Breite */
     .info-box {
         width: 100%;
         background: #4A8C45;
@@ -78,7 +72,7 @@ st.markdown(
         box-shadow: 3px 3px 15px rgba(0,0,0,0.2);
     }
 
-    /* Textbereich */
+    /* Szenario-Text auf volle Breite */
     .content-section {
         width: 80%;
         margin: auto;
@@ -87,7 +81,7 @@ st.markdown(
         text-align: justify;
     }
 
-    /* Footer */
+    /* Footer auf gesamte Breite */
     .footer {
         width: 100%;
         text-align: center;
@@ -102,21 +96,24 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# 📌 **Header mit Logo & Titel in den Block**
+# 📌 *Header mit voller Breite*
 st.markdown('<div class="header-background">', unsafe_allow_html=True)
 
+# Logo & Titel im Header
 st.markdown(
     """
-    <img src="https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/IMG_07283.PNG" class="logo">
-    <div class="header-title">MediMetrics</div>
-    <div class="header-subtitle">Evaluierung der Raum- & Flächennutzung für maximale Effizienz im Krankenhaus</div>
+    <div class="header-content">
+        <img src="https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/IMG_07283.PNG" width="130">
+        <div class="header-title">MediMetrics</div>
+        <div class="header-subtitle">Evaluierung der Raum- & Flächennutzung für maximale Effizienz im Krankenhaus</div>
+    </div>
     """,
     unsafe_allow_html=True
 )
 
 st.markdown('</div>', unsafe_allow_html=True)
 
-# 📌 **Grüne Infobox mit Funktionen**
+# 📌 *Grüne Infobox mit Funktionen*
 st.markdown(
     """
     <div class="info-box">
@@ -128,23 +125,23 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# 📌 **Szenario-Bereich auf volle Breite**
+# 📌 *Szenario-Bereich auf volle Breite*
 st.markdown('<div class="content-section">', unsafe_allow_html=True)
 
 st.markdown("""
     ### 🦠 Szenario: Pandemie
-    Ein Krankenhaus erlebt eine massive Zunahme an Patienten aufgrund einer **hochansteckenden Atemwegserkrankung**, 
-    die sich zu einer **Pandemie** ausgeweitet hat. Manche Patienten haben einen **milden Verlauf**, andere einen **schwerwiegenden**.  
+    Ein Krankenhaus erlebt eine massive Zunahme an Patienten aufgrund einer *hochansteckenden Atemwegserkrankung*, 
+    die sich zu einer *Pandemie* ausgeweitet hat. Manche Patienten haben einen *milden Verlauf, andere einen **schwerwiegenden*.  
       
-    **Erhöhte Flächennutzung:**  
-    - **Intensivmedizin (2.03)** benötigt mehr Betten  
-    - **Isolationskrankenpflege (2.06)** muss erweitert werden  
+    *Erhöhte Flächennutzung:*  
+    - *Intensivmedizin (2.03)* benötigt mehr Betten  
+    - *Isolationskrankenpflege (2.06)* muss erweitert werden  
     - Andere Funktionsbereiche müssen flexibel umgewidmet werden  
 """)
 
 st.markdown('</div>', unsafe_allow_html=True)
 
-# 📌 **Footer**
+# 📌 *Footer*
 st.markdown(
     """
     <div class="footer">
