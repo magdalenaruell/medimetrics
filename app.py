@@ -21,7 +21,7 @@ EXCEL_FILES = [
     "2.14_Komfortstation.xlsx",
 ]
 
-# 🔹 **Optimiertes Design für den Header**
+# 🌟 Stil-Optimierung für den Header
 st.markdown(
     """
     <style>
@@ -33,162 +33,140 @@ st.markdown(
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding-top: 50px;
-        padding-bottom: 50px;
+        padding-top: 30px;
+        padding-bottom: 40px;
         position: relative;
+        background-color: #F2F3F4; /* Hellgrauer Hintergrund */
     }
 
-    /* Schimmernder Hintergrund */
+    /* Farbverlauf-Hintergrund */
     .header-background {
         width: 100%;
-        height: 250px;
-        background: linear-gradient(135deg, rgba(193, 188, 230, 0.8), rgba(109, 190, 109, 0.8), rgba(41, 69, 138, 0.8));
-        backdrop-filter: blur(10px);
-        border-radius: 0px 0px 50px 50px;
+        height: 280px;
+        background: linear-gradient(to bottom, #ffffff, #4A8C45);
+        border-bottom-left-radius: 40px;
+        border-bottom-right-radius: 40px;
         position: absolute;
         top: 0;
         left: 0;
         z-index: -1;
     }
 
-    /* Logo-Styling */
+    /* Logo-Position oben rechts */
     .logo-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 10px;
-        z-index: 60;
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        z-index: 10;
     }
 
     .logo {
-        width: 140px;
-        height: 140px;
-        background: white;
-        padding: 12px;
-        border-radius: 50%;
-        box-shadow: 0px 4px 15px rgba(0,0,0,0.3), 
-                    0px 0px 30px rgba(109, 190, 109, 0.6);
+        width: 130px;
+        height: 130px;
     }
 
     /* Titel */
     .header-title {
-        font-size: 50px;
+        font-size: 55px;
         font-weight: bold;
-        font-family: 'Poppins', sans-serif;
-        color: #ffffff;
-        margin-top: 20px;
+        font-family: 'Arial', sans-serif;
+        color: #1A237E; /* Dunkelblau */
+        margin-top: 50px;
         letter-spacing: 1px;
-        text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        text-shadow: 1px 1px 5px rgba(0,0,0,0.2);
     }
 
     /* Untertitel */
     .header-subtitle {
-        font-size: 18px;
+        font-size: 22px;
         font-weight: 300;
-        color: #f0f0f0;
-        margin-bottom: 20px;
-    }
-
- /* Gesamt-Tabelle */
-    .styled-table {
-        width: 90%;
-        margin: 20px auto;
-        border-collapse: collapse;
-        font-family: 'Poppins', sans-serif;
-        background: rgba(255, 255, 255, 0.85);
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Kopfzeile */
-    .styled-table thead th {
-        background: linear-gradient(90deg, #C1BCE6, #6DBE6D, #29458A);
-        color: white;
-        text-align: center;
-        padding: 15px;
-        font-size: 16px;
-        border-bottom: 2px solid #ffffff;
-    }
-
-    /* Tabellenzeilen */
-    .styled-table tbody td {
-        padding: 12px;
-        text-align: center;
-        border-bottom: 1px solid #e0e0e0;
-        font-size: 14px;
-    }
-
-    /* Wechselnde Zeilenfarben für bessere Lesbarkeit */
-    .styled-table tbody tr:nth-child(even) {
-        background-color: rgba(193, 188, 230, 0.2);
-    }
-
-    /* Hover-Effekt für Interaktivität */
-    .styled-table tbody tr:hover {
-        background-color: rgba(109, 190, 109, 0.3);
-        transition: 0.3s ease-in-out;
-    }
-
-    /* Runde Ecken für das gesamte Tabellen-Layout */
-    .styled-table tbody tr:first-child td:first-child {
-        border-top-left-radius: 12px;
-    }
-    
-    .styled-table tbody tr:first-child td:last-child {
-        border-top-right-radius: 12px;
-    }
-    
-    .styled-table tbody tr:last-child td:first-child {
-        border-bottom-left-radius: 12px;
-    }
-    
-    .styled-table tbody tr:last-child td:last-child {
-        border-bottom-right-radius: 12px;
-    }
-
-    /* Markierung von Werten */
-    .highlight-green {
-        background-color: #90EE90;
-        font-weight: bold;
         color: #2C3E50;
-        padding: 5px 10px;
-        border-radius: 8px;
+        margin-bottom: 30px;
     }
 
-    .highlight-red {
-        background-color: #FF4500;
-        font-weight: bold;
+    /* Grüne Infobox */
+    .info-box {
+        width: 80%;
+        background: #4A8C45;
         color: white;
-        padding: 5px 10px;
-        border-radius: 8px;
+        padding: 20px;
+        border-radius: 15px;
+        font-size: 18px;
+        text-align: left;
+        margin-top: 20px;
+        box-shadow: 3px 3px 15px rgba(0,0,0,0.2);
+    }
+
+    .info-box ul {
+        padding-left: 20px;
+    }
+
+    .info-box li {
+        padding: 5px 0;
+    }
+
+    /* Footer */
+    .footer {
+        width: 100%;
+        text-align: center;
+        background: #1A237E;
+        color: white;
+        padding: 10px;
+        font-size: 14px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# 📌 **Header mit schimmerndem Hintergrund & zentriertem Logo**
+# 📌 **Header mit PowerPoint-Design**
 st.markdown('<div class="header-container">', unsafe_allow_html=True)
 
 # Hintergrund hinzufügen
 st.markdown('<div class="header-background"></div>', unsafe_allow_html=True)
 
-# Logo zentrieren
+# Logo rechts oben
 st.markdown('<div class="logo-container">', unsafe_allow_html=True)
-st.image("https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/IMG_07283.PNG", width=140)
+st.image("https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/IMG_07283.PNG", width=130)
 st.markdown('</div>', unsafe_allow_html=True)
 
 # Titel und Untertitel
 st.markdown(
     """
     <div class="header-title">MediMetrics</div>
-    <div class="header-subtitle">Optimierung der Raum- & Flächennutzung für maximale Effizienz im Krankenhaus</div>
+    <div class="header-subtitle">Evaluierung der Raum- & Flächennutzung für maximale Effizienz im Krankenhaus</div>
     """,
     unsafe_allow_html=True
 )
 
 st.markdown('</div>', unsafe_allow_html=True)
+
+# 📌 **Grüne Infobox mit Funktionen**
+st.markdown(
+    """
+    <div class="info-box">
+        <ul>
+            <li>Online-Tool zum Vergleich der Funktionsbereiche und Flächenanforderungen</li>
+            <li>Szenarien zur Untersuchung verschiedener Bedarfe eines Krankenhauses</li>
+            <li>Gibt mögliche Flächen aus</li>
+        </ul>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+# 📌 **Footer**
+st.markdown(
+    """
+    <div class="footer">
+        📅 11.02.2025 | Flächenmanagement im <span style="color:#FFCDD2;">Healthcare</span>-Sektor
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
        
 # 🦠 **Szenario Pandemie** (Schöner formatiert)
