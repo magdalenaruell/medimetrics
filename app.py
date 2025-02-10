@@ -52,17 +52,17 @@ st.markdown(
     color: white;
     font-family: 'Arial', sans-serif;
     position: absolute;
-    top: 40%;  /* Verschoben nach oben */
+    top: 30%;  /* NEU: Weiter nach oben verschieben */
     left: 50%;
     transform: translate(-50%, -50%);
-    margin-top: -30px; /* Extra nach oben geschoben */
+    margin-top: -40px; /* Leichte Anpassung */
 }
 
 /* Logo Styling */
 .logo {
     width: 120px;
     height: 120px;
-    margin-top: -90px; /* Höher in den Verlauf setzen */
+    margin-top: -120px; /* NEU: Logo noch höher setzen */
     border-radius: 50%;
     background-color: transparent;
     mix-blend-mode: multiply;
