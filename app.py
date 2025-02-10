@@ -191,32 +191,40 @@ st.markdown("""
     </p>
     """, unsafe_allow_html=True)
 
-# 📂 **Erste Excel-Datei auswählen**
+# 📂 **Erste Datei auswählen oder hochladen**
 st.subheader("📂 Wählen Sie die erste Datei für den Vergleich")
-selected_file1 = st.selectbox("📑 Erste Datei auswählen:", EXCEL_FILES, key="file1")
+use_uploaded_file1 = st.checkbox("📤 Eigene Datei für erste Tabelle hochladen")
+if use_uploaded_file1:
+    uploaded_file1 = st.file_uploader("Laden Sie die erste Excel-Datei hoch", type=["xlsx"], key="upload1")
+    selected_file1 = "Benutzerdefinierte Datei 1" if uploaded_file1 else None
+else:
+    selected_file1 = st.selectbox("📑 Erste Datei auswählen:", EXCEL_FILES, key="file1")
 
-# 📂 **Zweite Datei oder eigene Datei hochladen**
-st.subheader("📂 Wählen Sie eine Vergleichstabelle oder laden Sie eine eigene hoch")
-use_uploaded_file = st.checkbox("📤 Eigene Vergleichstabelle hochladen")
-
-if use_uploaded_file:
-    uploaded_file = st.file_uploader("Laden Sie eine Excel-Datei hoch", type=["xlsx"])
-    if uploaded_file:
-        selected_file2 = "Benutzerdefinierte Datei"
+# 📂 **Zweite Datei auswählen oder hochladen**
+st.subheader("📂 Wählen Sie die Vergleichstabelle")
+use_uploaded_file2 = st.checkbox("📤 Eigene Datei für zweite Tabelle hochladen")
+if use_uploaded_file2:
+    uploaded_file2 = st.file_uploader("Laden Sie die zweite Excel-Datei hoch", type=["xlsx"], key="upload2")
+    selected_file2 = "Benutzerdefinierte Datei 2" if uploaded_file2 else None
 else:
     selected_file2 = st.selectbox("📑 Zweite Datei auswählen:", [f for f in EXCEL_FILES if f != selected_file1], key="file2")
 
-# **Vergleich nur starten, wenn zwei gültige Dateien vorhanden sind**
-if selected_file1 and (selected_file2 or uploaded_file):
-    file_url1 = GITHUB_BASE_URL + selected_file1
-
+# **Vergleich starten, wenn zwei gültige Dateien vorhanden sind**
+if selected_file1 and selected_file2:
     try:
         # **Tabellenblatt "Paulina" laden**
         sheet_name = "Paulina"
-        df1 = pd.read_excel(file_url1, sheet_name=sheet_name, engine="openpyxl")
+        
+        # Erste Datei laden
+        if use_uploaded_file1 and uploaded_file1:
+            df1 = pd.read_excel(uploaded_file1, sheet_name=sheet_name, engine="openpyxl")
+        else:
+            file_url1 = GITHUB_BASE_URL + selected_file1
+            df1 = pd.read_excel(file_url1, sheet_name=sheet_name, engine="openpyxl")
 
-        if use_uploaded_file and uploaded_file:
-            df2 = pd.read_excel(uploaded_file, sheet_name=sheet_name, engine="openpyxl")
+        # Zweite Datei laden
+        if use_uploaded_file2 and uploaded_file2:
+            df2 = pd.read_excel(uploaded_file2, sheet_name=sheet_name, engine="openpyxl")
         else:
             file_url2 = GITHUB_BASE_URL + selected_file2
             df2 = pd.read_excel(file_url2, sheet_name=sheet_name, engine="openpyxl")
@@ -300,7 +308,6 @@ if selected_file1 and (selected_file2 or uploaded_file):
             comparison_html += row_html
 
         comparison_html += "</tbody></table>"
-
         st.subheader("📊 Vergleich der Tabellen")
 
         st.markdown("""
