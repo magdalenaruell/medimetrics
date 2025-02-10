@@ -140,9 +140,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 st.markdown(
     """
     <div class="info-box">
-        ✅ Online-Tool zum Vergleich der Funktionsbereiche und Flächenanforderungen  
-        ✅ Szenarien zur Untersuchung verschiedener Bedarfe eines Krankenhauses  
-        ✅ Gibt mögliche Flächen aus
+        MediMetrics
     </div>
     """,
     unsafe_allow_html=True
