@@ -1,26 +1,14 @@
 import streamlit as st
 import qrcode
-from io import BytesIO
 
 # URL deiner Streamlit-App
 app_url = "https://medimetrics.streamlit.app/"
 
-# QR-Code generieren
-qr = qrcode.QRCode(
-    version=1,
-    box_size=10,
-    border=5
-)
-qr.add_data(app_url)
-qr.make(fit=True)
+# QR-Code über eine externe API einfügen
+qr_code_url = f"https://api.qrserver.com/v1/create-qr-code/?size=250x250&data={app_url}"
 
-# In ein Bild umwandeln
-img = qr.make_image(fill="black", back_color="white")
-
-# In-Stream speichern und anzeigen
-buffer = BytesIO()
-img.save(buffer, format="PNG")
-st.image(buffer, caption="🔗 Scan den QR-Code, um MediMetrics zu öffnen!", use_column_width=True)
+# QR-Code anzeigen
+st.image(qr_code_url, caption="🔗 Scan den QR-Code, um MediMetrics zu öffnen!", use_column_width=False)
 
 # 🔗 GitHub-Repository mit den Excel-Dateien
 GITHUB_BASE_URL = "https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/"
