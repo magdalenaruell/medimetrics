@@ -57,7 +57,7 @@ st.markdown(
         justify-content: center;
         align-items: center;
         margin-top: 30px;
-        z-index: 10;
+        z-index: 60;
     }
 
     .logo {
