@@ -35,7 +35,7 @@ st.markdown(
    /* Header-Hintergrund flächendeckend */
 .header-background {
     width: 100%;  /* Volle Bildschirmbreite */
-    height: 280px; /* Etwas mehr Höhe für besseren Fokus */
+    height: 350px; /* Etwas mehr Höhe für besseren Fokus */
     background: linear-gradient(to right, #1A237E, #4A8C45); /* Farbverlauf */
     display: flex;
     justify-content: center;
