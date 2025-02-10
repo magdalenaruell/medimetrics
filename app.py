@@ -25,9 +25,9 @@ EXCEL_FILES = [
 st.markdown(
     """
     <style>
-    /* Gesamtanpassung */
+     /* Gesamtanpassung */
     .block-container {
-        max-width: 900px;
+        max-width: 1000px;
         margin: auto;
         text-align: center;
         font-family: 'Arial', sans-serif;
@@ -39,38 +39,40 @@ st.markdown(
 
     /* Header Styling */
     .header-container {
+        background: linear-gradient(90deg, #D1C4E9, #66BB6A, #1A237E);
+        color: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
         text-align: center;
-        padding: 10px;
-    }
-
-    /* Logo zentrieren */
-    .logo-container {
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 10px;
-    }
-
-    .logo {
-        width: 150px;
-        background: white;
-        padding: 8px;
-        border-radius: 80%;
-        box-shadow: 2px 2px 8px rgba(0,0,0,0.15);
     }
 
     .header-title {
-        font-size: 42px;
+        font-size: 48px;
         font-weight: bold;
-        color: #2c3e50;
-        text-align: center;
-        font-family: 'Arial', sans-serif;
+        margin: 0;
+        letter-spacing: 1px;
     }
 
     .header-subtitle {
         font-size: 18px;
-        color: #4b5563;
-        text-align: center;
         margin-top: 5px;
+        font-weight: 300;
+    }
+
+    /* Logo Styling */
+    .logo-container {
+        display: flex;
+        justify-content: center;
+        margin-top: -30px;
+    }
+
+    .logo {
+        width: 120px;
+        background: white;
+        padding: 10px;
+        border-radius: 50%;
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
     }
 
     /* Vergleichstabelle */
