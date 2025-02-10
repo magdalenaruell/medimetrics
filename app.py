@@ -105,7 +105,6 @@ st.markdown(
 # 📌 Header mit zentriertem Logo anzeigen
 st.markdown('<div class="header-container">', unsafe_allow_html=True)
 st.markdown('<div class="logo-container">', unsafe_allow_html=True)
-st.image("https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/IMG_07283.PNG", width=120)
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown(
