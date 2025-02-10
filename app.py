@@ -140,7 +140,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 st.markdown(
     """
     <div class="info-box">
-        MediMetrics
+        <div class="header-title">MediMetrics</div>
     </div>
     """,
     unsafe_allow_html=True
