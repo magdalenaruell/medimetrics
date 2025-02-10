@@ -64,7 +64,7 @@ st.markdown(
     height: 120px;
     margin-top: 20px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
+    background: none; /* Hintergrund entfernen */
     padding: 0px;
     box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
 }
