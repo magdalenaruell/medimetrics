@@ -35,7 +35,7 @@ st.markdown(
    /* Header-Hintergrund flächendeckend */
 .header-background {
     width: 100%;
-    height: 350px;
+    height: 500px;
     background: linear-gradient(to right, #1A237E, #4A8C45);
     display: flex;
     justify-content: center;
@@ -48,7 +48,6 @@ st.markdown(
 
 /* Logo & Titel Container */
 .header-content {
-    height: 500px;
     text-align: center;
     color: white;
     font-family: 'Arial', sans-serif;
