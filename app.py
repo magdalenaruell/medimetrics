@@ -25,46 +25,22 @@ EXCEL_FILES = [
 st.markdown(
     """
     <style>
-     /* Gesamtanpassung */
-    .block-container {
-        max-width: 1000px;
-        margin: auto;
-        text-align: center;
-        font-family: 'Arial', sans-serif;
-        background: #ffffff;
-        padding: 30px;
-        border-radius: 15px;
-        box-shadow: 3px 3px 15px rgba(0,0,0,0.1);
-    }
-
-    /* Header Styling */
+     /* Gesamter Header-Hintergrund */
     .header-container {
         background: linear-gradient(90deg, #D1C4E9, #66BB6A, #1A237E);
         color: white;
-        padding: 40px;
+        padding: 60px;
         border-radius: 15px;
-        box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+        box-shadow: 5px 5px 20px rgba(0,0,0,0.2);
         text-align: center;
-    }
-
-    .header-title {
-        font-size: 48px;
-        font-weight: bold;
-        margin: 0;
-        letter-spacing: 1px;
-    }
-
-    .header-subtitle {
-        font-size: 18px;
-        margin-top: 5px;
-        font-weight: 300;
+        position: relative;
     }
 
     /* Logo Styling */
     .logo-container {
         display: flex;
         justify-content: center;
-        margin-top: -30px;
+        margin-bottom: -30px;
     }
 
     .logo {
@@ -73,6 +49,30 @@ st.markdown(
         padding: 10px;
         border-radius: 50%;
         box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .logo:hover {
+        transform: scale(1.05); /* Leichter Hover-Effekt */
+    }
+
+    /* Haupttitel */
+    .header-title {
+        font-size: 50px;
+        font-weight: bold;
+        font-family: 'Poppins', sans-serif;
+        margin: 20px 0 10px 0;
+        letter-spacing: 1px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    /* Untertitel */
+    .header-subtitle {
+        font-size: 18px;
+        font-weight: 300;
+        opacity: 0.8;
+        margin-bottom: 20px;
+        font-family: 'Inter', sans-serif;
     }
 
     /* Vergleichstabelle */
@@ -113,7 +113,7 @@ st.markdown(
 # 📌 Header mit Logo anzeigen
 st.markdown('<div class="header-container">', unsafe_allow_html=True)
 
-# Logo einfügen
+# Logo mittig einfügen
 st.markdown('<div class="logo-container">', unsafe_allow_html=True)
 st.image("https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/IMG_07283.PNG", width=100)
 st.markdown('</div>', unsafe_allow_html=True)
