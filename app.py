@@ -96,7 +96,7 @@ st.markdown(
         padding: 12px;
         text-align: center;
         border: 1px solid #ddd;
-        font-size: 16px;  /* Größe des Textes */
+        font-size: 12px;  /* Größe des Textes */
     }
 
     td {
