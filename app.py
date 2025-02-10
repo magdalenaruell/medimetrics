@@ -71,7 +71,6 @@ st.markdown(
     font-weight: bold;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
     margin-top: -10px; /* Höher setzen */
-    color: #C6A7D8;  /* NEU: Violett angepasst */
 }
 
 /* Untertitel */
