@@ -35,15 +35,15 @@ st.markdown(
 /* Header-Hintergrund flächendeckend */
 .header-background {
     width: 100%;
-    height: 700px; /* Erhöhte Höhe für perfekten Look */
+    height: 800px; /* NEU: Erhöhte Höhe für Logo & Titel */
     background: linear-gradient(to right, #1A237E, #4A8C45);
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
-    margin-bottom: 0px; /* NEU: Keine negative Lücke mehr */
-    padding-bottom: 50px; /* NEU: Fügt Platz für saubere Übergänge hinzu */
+    padding-bottom: 0px; /* Verhindert unnötige Lücke */
+    margin-bottom: 0px; /* Lücke unterhalb entfernen */
 }
 
 /* Logo & Titel Container */
@@ -52,17 +52,16 @@ st.markdown(
     color: white;
     font-family: 'Arial', sans-serif;
     position: absolute;
-    top: 10%;  /* NEU: Höher positioniert */
+    top: 20%;  /* NEU: Position weiter oben */
     left: 50%;
     transform: translate(-50%, -50%);
-    margin-top: 0px; /* NEU: Keine zusätzliche Verschiebung mehr */
 }
 
 /* Logo Styling */
 .logo {
-    width: 140px;
-    height: 140px;
-    margin-top: -100px; /* NEU: Logo weiter oben */
+    width: 150px;  /* Größer für mehr Präsenz */
+    height: 150px;
+    margin-top: -50px; /* NEU: Weiter nach oben */
     border-radius: 50%;
     background-color: transparent;
     mix-blend-mode: multiply;
@@ -72,10 +71,10 @@ st.markdown(
 
 /* Titel im Header */
 .header-title {
-    font-size: 60px;
+    font-size: 65px; /* Etwas größer für besseren Fokus */
     font-weight: bold;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-    margin-top: -30px; /* NEU: Passt sich dem Logo an */
+    margin-top: -10px; /* NEU: Höher positioniert */
 }
 
 /* Untertitel */
@@ -92,9 +91,9 @@ st.markdown(
     text-align: center;
     background: #1A237E;
     color: white;
-    padding: 15px; /* NEU: Mehr Padding für bessere Optik */
+    padding: 15px;
     font-size: 14px;
-    position: relative; /* NEU: Footer bleibt unter dem Inhalt */
+    position: relative; /* Sicherstellen, dass er korrekt abschließt */
 }
    
 
