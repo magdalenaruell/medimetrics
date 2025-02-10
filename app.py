@@ -25,59 +25,61 @@ EXCEL_FILES = [
 st.markdown(
     """
     <style>
-     /* Header Hintergrund */
+     /* Gesamtcontainer */
     .header-container {
-        background: linear-gradient(90deg, #D1C4E9, #66BB6A, #1A237E);
-        color: white;
-        padding: 80px 0 50px 0;
-        border-radius: 20px;
-        box-shadow: 4px 4px 15px rgba(0,0,0,0.2);
+        width: 100%;
         text-align: center;
-        position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        padding-top: 30px;
+        padding-bottom: 40px;
     }
 
-    /* Logo Styling */
+    /* Farbverlauf als Hintergrund */
+    .gradient-banner {
+        width: 60%;
+        height: 70px;
+        background: linear-gradient(90deg, #D1C4E9, #66BB6A, #1A237E);
+        border-radius: 30px;
+        box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+        margin-bottom: -35px;  /* Damit es mit dem Logo überlappt */
+    }
+
+    /* Logo-Styling */
     .logo-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-bottom: -30px;
+        margin-bottom: 10px;
+        z-index: 10;
     }
 
     .logo {
-        width: 130px;
+        width: 120px;
         background: white;
-        padding: 10px;
+        padding: 8px;
         border-radius: 50%;
-        box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-        transition: transform 0.3s ease-in-out;
+        box-shadow: 2px 2px 8px rgba(0,0,0,0.15);
     }
 
-    .logo:hover {
-        transform: scale(1.05);
-    }
-
-    /* Haupttitel */
+    /* Titel */
     .header-title {
-        font-size: 55px;
+        font-size: 50px;
         font-weight: bold;
         font-family: 'Poppins', sans-serif;
-        margin: 20px 0 10px 0;
-        letter-spacing: 1px;
-        text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        margin-top: 15px;
+        letter-spacing: 0.5px;
+        text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
     }
 
     /* Untertitel */
     .header-subtitle {
         font-size: 20px;
         font-weight: 300;
-        opacity: 0.85;
-        margin-bottom: 40px;
-        font-family: 'Inter', sans-serif;
+        color: #4b5563;
+        margin-bottom: 20px;
     }
 
     /* Vergleichstabelle */
@@ -115,12 +117,15 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# 📌 Header mit Logo zentrieren
+# 📌 Header mit zentriertem Farbverlauf und Logo
 st.markdown('<div class="header-container">', unsafe_allow_html=True)
 
-# Logo wirklich zentriert einfügen
+# Farbverlauf als Banner
+st.markdown('<div class="gradient-banner"></div>', unsafe_allow_html=True)
+
+# Logo genau in der Mitte unter dem Farbverlauf platzieren
 st.markdown('<div class="logo-container">', unsafe_allow_html=True)
-st.image("https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/IMG_07283.PNG", width=130)
+st.image("https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/IMG_07283.PNG", width=120)
 st.markdown('</div>', unsafe_allow_html=True)
 
 # Titel und Untertitel
