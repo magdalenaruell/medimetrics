@@ -34,17 +34,19 @@ st.markdown(
 
    /* Header-Hintergrund flächendeckend */
 .header-background {
-    width: 100%;  /* Volle Bildschirmbreite */
-    height: 350px; /* Etwas mehr Höhe für besseren Fokus */
-    background: linear-gradient(to right, #1A237E, #4A8C45); /* Farbverlauf */
+    width: 100%;
+    height: 350px;
+    background: linear-gradient(to right, #1A237E, #4A8C45);
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
+    margin-bottom: 0px; /* NEU: Entfernt Abstand nach unten */
+    padding-bottom: 0px; /* NEU: Verhindert Padding */
 }
 
-/* Container für Logo & Titel */
+/* Logo & Titel Container */
 .header-content {
     text-align: center;
     color: white;
@@ -53,6 +55,7 @@ st.markdown(
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    margin-bottom: 0px; /* NEU */
 }
 
 /* Logo Styling */
@@ -81,15 +84,16 @@ st.markdown(
 }
 
     /* Grüne Infobox über volle Breite */
-    .info-box {
-        width: 100%;
-        background: #4A8C45;
-        color: white;
-        padding: 0px;
-        text-align: center;
-        font-size: 20px;
-        box-shadow: 3px 3px 15px rgba(0,0,0,0.2);
-    }
+.info-box {
+    width: 100%;
+    background: #4A8C45;
+    color: white;
+    padding: 20px; /* NEU: Etwas Padding für bessere Optik */
+    margin-top: -5px; /* NEU: Lücke zum Header entfernen */
+    text-align: center;
+    font-size: 20px;
+    box-shadow: 3px 3px 15px rgba(0,0,0,0.2);
+}
 
     /* Szenario-Text auf volle Breite */
     .content-section {
