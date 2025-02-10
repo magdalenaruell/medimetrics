@@ -35,15 +35,15 @@ st.markdown(
 /* Header-Hintergrund flächendeckend */
 .header-background {
     width: 100%;
-    height: 700px; /* NEU: Mehr Höhe für besseren Look */
+    height: 700px; /* Erhöhte Höhe für perfekten Look */
     background: linear-gradient(to right, #1A237E, #4A8C45);
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
-    margin-bottom: -120px; /* NEU: Reduzierte Lücke nach unten */
-    padding-bottom: 0px;
+    margin-bottom: 0px; /* NEU: Keine negative Lücke mehr */
+    padding-bottom: 50px; /* NEU: Fügt Platz für saubere Übergänge hinzu */
 }
 
 /* Logo & Titel Container */
@@ -52,17 +52,17 @@ st.markdown(
     color: white;
     font-family: 'Arial', sans-serif;
     position: absolute;
-    top: -10%;  /* NEU: Weiter nach oben */
+    top: 10%;  /* NEU: Höher positioniert */
     left: 50%;
     transform: translate(-50%, -50%);
-    margin-top: -80px; /* NEU: Noch weiter nach oben */
+    margin-top: 0px; /* NEU: Keine zusätzliche Verschiebung mehr */
 }
 
 /* Logo Styling */
 .logo {
-    width: 130px;
-    height: 130px;
-    margin-top: -300px; /* NEU: Logo noch höher setzen */
+    width: 140px;
+    height: 140px;
+    margin-top: -100px; /* NEU: Logo weiter oben */
     border-radius: 50%;
     background-color: transparent;
     mix-blend-mode: multiply;
@@ -72,10 +72,10 @@ st.markdown(
 
 /* Titel im Header */
 .header-title {
-    font-size: 60px; /* Etwas größer für besseren Fokus */
+    font-size: 60px;
     font-weight: bold;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-    margin-top: -80px; /* NEU: Weiter nach oben */
+    margin-top: -30px; /* NEU: Passt sich dem Logo an */
 }
 
 /* Untertitel */
@@ -83,40 +83,19 @@ st.markdown(
     font-size: 22px;
     font-weight: 300;
     color: #f0f0f0;
-    margin-top: -30px; /* NEU: Höher setzen */
+    margin-top: -10px; /* NEU: Höher gesetzt */
 }
 
- /* Grüne Infobox über volle Breite */
-.info-box {
+/* Footer auf gesamte Breite */
+.footer {
     width: 100%;
-    background: #4A8C45;
-    color: white;
-    padding: 20px; /* NEU: Etwas Padding für bessere Optik */
-    margin-top: 0px; /* NEU: Lücke zum Header entfernen */
     text-align: center;
-    font-size: 20px;
-    box-shadow: 3px 3px 15px rgba(0,0,0,0.2);
+    background: #1A237E;
+    color: white;
+    padding: 15px; /* NEU: Mehr Padding für bessere Optik */
+    font-size: 14px;
+    position: relative; /* NEU: Footer bleibt unter dem Inhalt */
 }
-
-    /* Szenario-Text auf volle Breite */
-    .content-section {
-        width: 80%;
-        margin: auto;
-        font-size: 18px;
-        line-height: 1.6;
-        text-align: justify;
-    }
-
-    /* Footer auf gesamte Breite */
-    .footer {
-        width: 100%;
-        text-align: center;
-        background: #1A237E;
-        color: white;
-        padding: 10px;
-        margin-top: 0px;
-        font-size: 14px;
-    }
    
 
     </style>
