@@ -86,7 +86,7 @@ st.markdown(
 
     th, td {
         border: 1px solid #ddd;
-        padding: 12px;
+        padding: 10px;
         text-align: center;
     }
 
