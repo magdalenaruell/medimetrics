@@ -35,14 +35,14 @@ st.markdown(
 /* Header-Hintergrund flächendeckend */
 .header-background {
     width: 100%;
-    height: 600px;
+    height: 700px; /* NEU: Mehr Höhe für besseren Look */
     background: linear-gradient(to right, #1A237E, #4A8C45);
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
-    margin-bottom: -90px;
+    margin-bottom: -120px; /* NEU: Reduzierte Lücke nach unten */
     padding-bottom: 0px;
 }
 
@@ -52,17 +52,17 @@ st.markdown(
     color: white;
     font-family: 'Arial', sans-serif;
     position: absolute;
-    top: 5%;  /* NEU: Weiter nach oben verschieben */
+    top: 0%;  /* NEU: Weiter nach oben */
     left: 50%;
     transform: translate(-50%, -50%);
-    margin-top: -40px; /* Leichte Anpassung */
+    margin-top: -80px; /* NEU: Noch weiter nach oben */
 }
 
 /* Logo Styling */
 .logo {
-    width: 120px;
-    height: 120px;
-    margin-top: -220px; /* NEU: Logo noch höher setzen */
+    width: 130px;
+    height: 130px;
+    margin-top: -250px; /* NEU: Logo noch höher setzen */
     border-radius: 50%;
     background-color: transparent;
     mix-blend-mode: multiply;
@@ -72,9 +72,10 @@ st.markdown(
 
 /* Titel im Header */
 .header-title {
-    font-size: 55px;
+    font-size: 60px; /* Etwas größer für besseren Fokus */
     font-weight: bold;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    margin-top: -50px; /* NEU: Weiter nach oben */
 }
 
 /* Untertitel */
@@ -82,6 +83,7 @@ st.markdown(
     font-size: 22px;
     font-weight: 300;
     color: #f0f0f0;
+    margin-top: -30px; /* NEU: Höher setzen */
 }
 
  /* Grüne Infobox über volle Breite */
