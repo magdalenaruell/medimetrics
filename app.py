@@ -127,7 +127,7 @@ st.markdown('<div class="header-background">', unsafe_allow_html=True)
 st.markdown(
     """
     <div class="header-content">
-        <img src="https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/IMG_07283.PNG" width="130">
+        <img src="https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/IMG_07284.png" width="130">
         <div class="header-title">MediMetrics</div>
         <div class="header-subtitle">Evaluierung der Raum- & Flächennutzung für maximale Effizienz im Krankenhaus</div>
     </div>
