@@ -25,26 +25,31 @@ EXCEL_FILES = [
 st.markdown(
     """
     <style>
-     /* Gesamter Header-Hintergrund */
+     /* Header Hintergrund */
     .header-container {
         background: linear-gradient(90deg, #D1C4E9, #66BB6A, #1A237E);
         color: white;
-        padding: 60px;
-        border-radius: 15px;
-        box-shadow: 5px 5px 20px rgba(0,0,0,0.2);
+        padding: 80px 0 50px 0;
+        border-radius: 20px;
+        box-shadow: 4px 4px 15px rgba(0,0,0,0.2);
         text-align: center;
         position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
     /* Logo Styling */
     .logo-container {
         display: flex;
         justify-content: center;
+        align-items: center;
         margin-bottom: -30px;
     }
 
     .logo {
-        width: 120px;
+        width: 130px;
         background: white;
         padding: 10px;
         border-radius: 50%;
@@ -53,25 +58,25 @@ st.markdown(
     }
 
     .logo:hover {
-        transform: scale(1.05); /* Leichter Hover-Effekt */
+        transform: scale(1.05);
     }
 
     /* Haupttitel */
     .header-title {
-        font-size: 50px;
+        font-size: 55px;
         font-weight: bold;
         font-family: 'Poppins', sans-serif;
         margin: 20px 0 10px 0;
         letter-spacing: 1px;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
     }
 
     /* Untertitel */
     .header-subtitle {
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 300;
-        opacity: 0.8;
-        margin-bottom: 20px;
+        opacity: 0.85;
+        margin-bottom: 40px;
         font-family: 'Inter', sans-serif;
     }
 
@@ -110,12 +115,12 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# 📌 Header mit Logo anzeigen
+# 📌 Header mit Logo zentrieren
 st.markdown('<div class="header-container">', unsafe_allow_html=True)
 
-# Logo mittig einfügen
+# Logo wirklich zentriert einfügen
 st.markdown('<div class="logo-container">', unsafe_allow_html=True)
-st.image("https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/IMG_07283.PNG", width=100)
+st.image("https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/IMG_07283.PNG", width=130)
 st.markdown('</div>', unsafe_allow_html=True)
 
 # Titel und Untertitel
