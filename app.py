@@ -52,7 +52,7 @@ st.markdown(
     color: white;
     font-family: 'Arial', sans-serif;
     position: absolute;
-    top: 30%;  /* NEU: Weiter nach oben verschieben */
+    top: 10%;  /* NEU: Weiter nach oben verschieben */
     left: 50%;
     transform: translate(-50%, -50%);
     margin-top: -40px; /* Leichte Anpassung */
