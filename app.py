@@ -39,7 +39,7 @@ st.markdown(
     position: relative;
     box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
     padding-bottom: 0px;
-    margin-bottom: -100px; /* KEINE negative Margin */
+    margin-bottom: -200px; /* KEINE negative Margin */
 }
 
 /* Logo & Titel Container */
