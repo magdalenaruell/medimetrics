@@ -192,22 +192,34 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # 📂 **Erste Excel-Datei auswählen**
-st.subheader("📂 Wählen Sie die erste Teilstelle")
+st.subheader("📂 Wählen Sie die erste Datei für den Vergleich")
 selected_file1 = st.selectbox("📑 Erste Datei auswählen:", EXCEL_FILES, key="file1")
 
-# 📂 **Zweite Excel-Datei auswählen**
-st.subheader("📂 Wählen Sie eine Vergleichsteilstelle")
-selected_file2 = st.selectbox("📑 Zweite Datei auswählen:", [f for f in EXCEL_FILES if f != selected_file1], key="file2")
+# 📂 **Zweite Datei oder eigene Datei hochladen**
+st.subheader("📂 Wählen Sie eine Vergleichstabelle oder laden Sie eine eigene hoch")
+use_uploaded_file = st.checkbox("📤 Eigene Vergleichstabelle hochladen")
 
-if selected_file1 and selected_file2:
+if use_uploaded_file:
+    uploaded_file = st.file_uploader("Laden Sie eine Excel-Datei hoch", type=["xlsx"])
+    if uploaded_file:
+        selected_file2 = "Benutzerdefinierte Datei"
+else:
+    selected_file2 = st.selectbox("📑 Zweite Datei auswählen:", [f for f in EXCEL_FILES if f != selected_file1], key="file2")
+
+# **Vergleich nur starten, wenn zwei gültige Dateien vorhanden sind**
+if selected_file1 and (selected_file2 or uploaded_file):
     file_url1 = GITHUB_BASE_URL + selected_file1
-    file_url2 = GITHUB_BASE_URL + selected_file2
 
     try:
         # **Tabellenblatt "Paulina" laden**
         sheet_name = "Paulina"
         df1 = pd.read_excel(file_url1, sheet_name=sheet_name, engine="openpyxl")
-        df2 = pd.read_excel(file_url2, sheet_name=sheet_name, engine="openpyxl")
+
+        if use_uploaded_file and uploaded_file:
+            df2 = pd.read_excel(uploaded_file, sheet_name=sheet_name, engine="openpyxl")
+        else:
+            file_url2 = GITHUB_BASE_URL + selected_file2
+            df2 = pd.read_excel(file_url2, sheet_name=sheet_name, engine="openpyxl")
 
         st.success(f"📄 Dateien erfolgreich geladen: `{selected_file1}` & `{selected_file2}` (Tabellenblatt: {sheet_name})")
 
@@ -215,7 +227,7 @@ if selected_file1 and selected_file2:
         df1.columns = df1.columns.str.strip()
         df2.columns = df2.columns.str.strip()
 
-        # **Nur gemeinsame Spalten behalten, um Versatz zu vermeiden**
+        # **Nur gemeinsame Spalten behalten**
         common_columns = df1.columns.intersection(df2.columns)
         df1 = df1[common_columns]
         df2 = df2[common_columns]
@@ -238,7 +250,7 @@ if selected_file1 and selected_file2:
         comparison_html += "<th>Vergleich</th><th>Räume in Funktionsbereichen</th>"
 
         for col in common_columns:
-            if col != "Räume in Funktionsbereichen":  # Diese Spalte wurde bereits indexiert
+            if col != "Räume in Funktionsbereichen":
                 comparison_html += f"<th>{col}</th>"
         comparison_html += "</tr></thead><tbody>"
 
@@ -255,7 +267,7 @@ if selected_file1 and selected_file2:
 
             for col in common_columns:
                 if col == "Räume in Funktionsbereichen":
-                    continue  # Diese Spalte wurde bereits indexiert
+                    continue
                 val1 = row1[col].values[0] if col in row1.columns else "—"
                 val2 = row2[col].values[0] if col in row2.columns else "—"
 
