@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 import qrcode
 
 # URL deiner Streamlit-App
