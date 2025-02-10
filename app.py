@@ -85,7 +85,7 @@ st.markdown(
         width: 100%;
         background: #4A8C45;
         color: white;
-        padding: 20px;
+        padding: 0px;
         text-align: center;
         font-size: 20px;
         box-shadow: 3px 3px 15px rgba(0,0,0,0.2);
