@@ -30,7 +30,7 @@ st.markdown(
 /* Header-Hintergrund flächendeckend */
 .header-background {
     width: 100%;
-    height: 850px; /* Mehr Höhe für das Logo & Titel */
+    height: 900px; /* Mehr Höhe für das Logo & Titel */
     background: linear-gradient(to right, #1A237E, #4A8C45);
     display: flex;
     justify-content: center;
@@ -48,16 +48,16 @@ st.markdown(
     color: white;
     font-family: 'Arial', sans-serif;
     position: absolute;
-    top: 25%;  /* Logo und Titel nach oben */
+    top: 20%;  /* Titel höher setzen */
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
 /* Logo Styling */
 .logo {
-    width: 150px;  /* Größer für bessere Darstellung */
-    height: 150px;
-    margin-top: -50px; /* Noch weiter nach oben setzen */
+    width: 180px;  /* Größer für besseren Look */
+    height: 180px;
+    margin-top: -180px; /* LOGO NOCH WEITER HOCH! */
     border-radius: 50%;
     background-color: transparent;
     mix-blend-mode: multiply;
@@ -70,7 +70,7 @@ st.markdown(
     font-size: 65px;
     font-weight: bold;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-    margin-top: 10px; /* Sicherstellen, dass es sichtbar bleibt */
+    margin-top: -10px; /* Höher setzen */
 }
 
 /* Untertitel */
@@ -78,7 +78,7 @@ st.markdown(
     font-size: 22px;
     font-weight: 300;
     color: #f0f0f0;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 /* Footer auf gesamte Breite */
@@ -91,6 +91,7 @@ st.markdown(
     font-size: 14px;
     position: relative; /* Stellt sicher, dass der Footer unten bleibt */
 }
+
    
 
     </style>
