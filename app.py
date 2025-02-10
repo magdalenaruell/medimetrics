@@ -55,14 +55,14 @@ st.markdown(
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    margin-bottom: 0px; /* NEU */
+    margin-bottom: 10px; /* NEU */
 }
 
 /* Logo Styling */
 .logo {
     width: 120px;
     height: 120px;
-    margin-top: 10px;
+    margin-top: 0px;
     border-radius: 50%;
     background-color: transparent; /* Hintergrund entfernen */
     mix-blend-mode: multiply; /* Entfernt helle Hintergründe */
