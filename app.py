@@ -62,7 +62,7 @@ st.markdown(
 .logo {
     width: 120px;
     height: 120px;
-    margin-bottom: 0px;
+    margin-top: 20px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
     padding: 0px;
