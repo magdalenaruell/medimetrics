@@ -25,12 +25,7 @@ EXCEL_FILES = [
 st.markdown(
     """
     <style>
-    /* Gesamt-Layout auf volle Breite setzen */
-    .main-container {
-        width: 100%;
-        padding: 0;
-        margin: 0;
-    }
+  
 
 /* Header-Hintergrund flächendeckend */
 .header-background {
