@@ -62,7 +62,7 @@ st.markdown(
 .logo {
     width: 120px;
     height: 120px;
-    margin-top: 0px;
+    margin-top: -20px;
     border-radius: 50%;
     background-color: transparent; /* Hintergrund entfernen */
     mix-blend-mode: multiply; /* Entfernt helle Hintergründe */
@@ -90,7 +90,7 @@ st.markdown(
     background: #4A8C45;
     color: white;
     padding: 20px; /* NEU: Etwas Padding für bessere Optik */
-    margin-top: 10px; /* NEU: Lücke zum Header entfernen */
+    margin-top: 0px; /* NEU: Lücke zum Header entfernen */
     text-align: center;
     font-size: 20px;
     box-shadow: 3px 3px 15px rgba(0,0,0,0.2);
