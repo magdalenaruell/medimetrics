@@ -56,7 +56,7 @@ st.markdown(
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 30px;
+        margin-top: 10px;
         z-index: 60;
     }
 
@@ -89,6 +89,80 @@ st.markdown(
         margin-bottom: 20px;
     }
 
+ /* Gesamt-Tabelle */
+    .styled-table {
+        width: 90%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        font-family: 'Poppins', sans-serif;
+        background: rgba(255, 255, 255, 0.85);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Kopfzeile */
+    .styled-table thead th {
+        background: linear-gradient(90deg, #C1BCE6, #6DBE6D, #29458A);
+        color: white;
+        text-align: center;
+        padding: 15px;
+        font-size: 16px;
+        border-bottom: 2px solid #ffffff;
+    }
+
+    /* Tabellenzeilen */
+    .styled-table tbody td {
+        padding: 12px;
+        text-align: center;
+        border-bottom: 1px solid #e0e0e0;
+        font-size: 14px;
+    }
+
+    /* Wechselnde Zeilenfarben für bessere Lesbarkeit */
+    .styled-table tbody tr:nth-child(even) {
+        background-color: rgba(193, 188, 230, 0.2);
+    }
+
+    /* Hover-Effekt für Interaktivität */
+    .styled-table tbody tr:hover {
+        background-color: rgba(109, 190, 109, 0.3);
+        transition: 0.3s ease-in-out;
+    }
+
+    /* Runde Ecken für das gesamte Tabellen-Layout */
+    .styled-table tbody tr:first-child td:first-child {
+        border-top-left-radius: 12px;
+    }
+    
+    .styled-table tbody tr:first-child td:last-child {
+        border-top-right-radius: 12px;
+    }
+    
+    .styled-table tbody tr:last-child td:first-child {
+        border-bottom-left-radius: 12px;
+    }
+    
+    .styled-table tbody tr:last-child td:last-child {
+        border-bottom-right-radius: 12px;
+    }
+
+    /* Markierung von Werten */
+    .highlight-green {
+        background-color: #90EE90;
+        font-weight: bold;
+        color: #2C3E50;
+        padding: 5px 10px;
+        border-radius: 8px;
+    }
+
+    .highlight-red {
+        background-color: #FF4500;
+        font-weight: bold;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 8px;
+    }
     </style>
     """,
     unsafe_allow_html=True
