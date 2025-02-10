@@ -21,47 +21,53 @@ EXCEL_FILES = [
     "2.14_Komfortstation.xlsx",
 ]
 
-# 🔥 Vollbild-Optimierung mit CSS
+# 🔥 Vollbild-Optimierung mit CSS (mit integriertem Logo & Titel)
 st.markdown(
     """
     <style>
-    /* Gesamt-Layout auf volle Breite setzen */
+    /* Volle Breite für das Layout */
     .main-container {
         width: 100%;
         padding: 0;
         margin: 0;
     }
 
-    /* Header-Hintergrund flächendeckend */
+    /* Header-Block mit Logo und Titel */
     .header-background {
         width: 100%;
         height: 250px;
         background: linear-gradient(to right, #1A237E, #4A8C45);
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-    }
-
-    /* Logo & Titel im Header */
-    .header-content {
         text-align: center;
         color: white;
         font-family: 'Arial', sans-serif;
+        position: relative;
     }
 
+    /* Logo zentriert */
+    .logo {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 10px;
+    }
+
+    /* Titel direkt in den Header */
     .header-title {
         font-size: 55px;
         font-weight: bold;
-        text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
     }
 
     .header-subtitle {
-        font-size: 22px;
+        font-size: 20px;
         font-weight: 300;
         color: #f0f0f0;
     }
 
-    /* Grüne Infobox über volle Breite */
+    /* Infobox auf volle Breite */
     .info-box {
         width: 100%;
         background: #4A8C45;
@@ -72,7 +78,7 @@ st.markdown(
         box-shadow: 3px 3px 15px rgba(0,0,0,0.2);
     }
 
-    /* Szenario-Text auf volle Breite */
+    /* Textbereich */
     .content-section {
         width: 80%;
         margin: auto;
@@ -81,7 +87,7 @@ st.markdown(
         text-align: justify;
     }
 
-    /* Footer auf gesamte Breite */
+    /* Footer */
     .footer {
         width: 100%;
         text-align: center;
@@ -96,17 +102,14 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# 📌 **Header mit voller Breite**
+# 📌 **Header mit Logo & Titel in den Block**
 st.markdown('<div class="header-background">', unsafe_allow_html=True)
 
-# Logo & Titel im Header
 st.markdown(
     """
-    <div class="header-content">
-        <img src="https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/IMG_07283.PNG" width="130">
-        <div class="header-title">MediMetrics</div>
-        <div class="header-subtitle">Evaluierung der Raum- & Flächennutzung für maximale Effizienz im Krankenhaus</div>
-    </div>
+    <img src="https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/IMG_07283.PNG" class="logo">
+    <div class="header-title">MediMetrics</div>
+    <div class="header-subtitle">Evaluierung der Raum- & Flächennutzung für maximale Effizienz im Krankenhaus</div>
     """,
     unsafe_allow_html=True
 )
