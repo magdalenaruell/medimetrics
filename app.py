@@ -21,11 +21,11 @@ EXCEL_FILES = [
     "2.14_Komfortstation.xlsx",
 ]
 
-# 🌟 Stil-Optimierung für die App
+# 🔹 **Optimiertes Design für den Header**
 st.markdown(
     """
     <style>
-     /* Gesamtcontainer */
+    /* Gesamt-Header */
     .header-container {
         width: 100%;
         text-align: center;
@@ -33,35 +33,38 @@ st.markdown(
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding-top: 30px;
-        padding-bottom: 40px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        position: relative;
     }
 
-    /* Farbverlauf als Hintergrund */
+    /* Farbverlauf-Hintergrund mit Glaseffekt */
     .gradient-banner {
-        width: 60%;
-        height: 70px;
-        background: linear-gradient(90deg, #D1C4E9, #66BB6A, #1A237E);
-        border-radius: 30px;
-        box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
-        margin-bottom: -35px;  /* Damit es mit dem Logo überlappt */
+        width: 65%;
+        height: 90px;
+        background: linear-gradient(90deg, #C1BCE6, #6DBE6D, #29458A);
+        border-radius: 35px;
+        box-shadow: 4px 4px 15px rgba(0,0,0,0.3);
+        margin-bottom: -50px;  
+        filter: blur(2px);
     }
 
-    /* Logo-Styling */
+    /* Logo genau unter den Farbverlauf zentrieren */
     .logo-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-bottom: 10px;
+        position: relative;
         z-index: 10;
     }
 
     .logo {
-        width: 120px;
+        width: 130px;
+        height: 130px;
         background: white;
-        padding: 8px;
+        padding: 12px;
         border-radius: 50%;
-        box-shadow: 2px 2px 8px rgba(0,0,0,0.15);
+        box-shadow: 2px 2px 12px rgba(0,0,0,0.3);
     }
 
     /* Titel */
@@ -69,63 +72,34 @@ st.markdown(
         font-size: 50px;
         font-weight: bold;
         font-family: 'Poppins', sans-serif;
-        margin-top: 15px;
-        letter-spacing: 0.5px;
-        text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        color: #2C3E50;
+        margin-top: 25px;
+        letter-spacing: 0.8px;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
     }
 
     /* Untertitel */
     .header-subtitle {
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 300;
         color: #4b5563;
         margin-bottom: 20px;
     }
 
-    /* Vergleichstabelle */
-    table {
-        width: 50%;
-        justify-content: center;
-        border-collapse: collapse;
-        margin: auto;
-        border-radius: 10px;
-        overflow: hidden;
-        background: white;
-        box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-    }
-
-    th, td {
-        border: 1px solid #ddd;
-        padding: 10px;
-        text-align: center;
-    }
-
-    th {
-        background-color: #e3f2fd;  /* Hellblauer Hintergrund */
-        font-weight: bold;
-        padding: 12px;
-        text-align: center;
-        border: 1px solid #ddd;
-        font-size: 12px;  /* Größe des Textes */
-    }
-
-    td {
-        font-size: 10px;
-    }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# 📌 Header mit zentriertem Farbverlauf und Logo
+# 📌 **Header mit neuem Design**
 st.markdown('<div class="header-container">', unsafe_allow_html=True)
 
 # Farbverlauf als Banner
 st.markdown('<div class="gradient-banner"></div>', unsafe_allow_html=True)
 
-# Logo genau in der Mitte unter dem Farbverlauf platzieren
+# Logo direkt unterhalb des Farbverlaufs platzieren
 st.markdown('<div class="logo-container">', unsafe_allow_html=True)
-st.image("https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/IMG_07283.PNG", width=120)
+st.image("https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/IMG_07283.PNG", width=130)
 st.markdown('</div>', unsafe_allow_html=True)
 
 # Titel und Untertitel
