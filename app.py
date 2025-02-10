@@ -110,18 +110,23 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# 📌 Header mit zentriertem Logo anzeigen
+# 📌 Header mit Logo anzeigen
 st.markdown('<div class="header-container">', unsafe_allow_html=True)
+
+# Logo einfügen
 st.markdown('<div class="logo-container">', unsafe_allow_html=True)
+st.image("https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/IMG_07283.PNG", width=100)
 st.markdown('</div>', unsafe_allow_html=True)
 
+# Titel und Untertitel
 st.markdown(
     """
     <div class="header-title">MediMetrics</div>
-    <div class="header-subtitle">Optimierung der Raum- & Flächennutzung für maximale Effizienz im Krankenhaus</div>
+    <div class="header-subtitle">Evaluierung der Raum- & Flächennutzung für maximale Effizienz im Krankenhaus</div>
     """,
     unsafe_allow_html=True
 )
+
 st.markdown('</div>', unsafe_allow_html=True)
 
        
