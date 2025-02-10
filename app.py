@@ -96,7 +96,7 @@ st.markdown(
     }
 
     td {
-        font-size: 14px;
+        font-size: 10px;
     }
     </style>
     """,
