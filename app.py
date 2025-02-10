@@ -48,6 +48,7 @@ st.markdown(
 
 /* Logo & Titel Container */
 .header-content {
+    height: 500px;
     text-align: center;
     color: white;
     font-family: 'Arial', sans-serif;
@@ -84,6 +85,36 @@ st.markdown(
     color: #f0f0f0;
 }
 
+ /* Grüne Infobox über volle Breite */
+.info-box {
+    width: 100%;
+    background: #4A8C45;
+    color: white;
+    padding: 20px; /* NEU: Etwas Padding für bessere Optik */
+    margin-top: 0px; /* NEU: Lücke zum Header entfernen */
+    text-align: center;
+    font-size: 20px;
+    box-shadow: 3px 3px 15px rgba(0,0,0,0.2);
+}
+
+    /* Szenario-Text auf volle Breite */
+    .content-section {
+        width: 80%;
+        margin: auto;
+        font-size: 18px;
+        line-height: 1.6;
+        text-align: justify;
+    }
+
+    /* Footer auf gesamte Breite */
+    .footer {
+        width: 100%;
+        text-align: center;
+        background: #1A237E;
+        color: white;
+        padding: 10px;
+        font-size: 14px;
+    }
    
 
     </style>
