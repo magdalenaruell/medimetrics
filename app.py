@@ -62,7 +62,7 @@ st.markdown(
 .logo {
     width: 120px;
     height: 120px;
-    margin-top: 20px;
+    margin-top: 10px;
     border-radius: 50%;
     background-color: transparent; /* Hintergrund entfernen */
     mix-blend-mode: multiply; /* Entfernt helle Hintergründe */
