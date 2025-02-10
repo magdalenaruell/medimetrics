@@ -38,33 +38,36 @@ st.markdown(
         position: relative;
     }
 
-    /* Farbverlauf-Hintergrund mit Glaseffekt */
-    .gradient-banner {
-        width: 65%;
-        height: 90px;
-        background: linear-gradient(90deg, #C1BCE6, #6DBE6D, #29458A);
-        border-radius: 35px;
-        box-shadow: 4px 4px 15px rgba(0,0,0,0.3);
-        margin-bottom: -50px;  
-        filter: blur(2px);
+    /* Schimmernder Hintergrund */
+    .header-background {
+        width: 100%;
+        height: 250px;
+        background: linear-gradient(135deg, rgba(193, 188, 230, 0.8), rgba(109, 190, 109, 0.8), rgba(41, 69, 138, 0.8));
+        backdrop-filter: blur(10px);
+        border-radius: 0px 0px 50px 50px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
     }
 
-    /* Logo genau unter den Farbverlauf zentrieren */
+    /* Logo-Styling */
     .logo-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        position: relative;
+        margin-top: 30px;
         z-index: 10;
     }
 
     .logo {
-        width: 130px;
-        height: 130px;
+        width: 140px;
+        height: 140px;
         background: white;
         padding: 12px;
         border-radius: 50%;
-        box-shadow: 2px 2px 12px rgba(0,0,0,0.3);
+        box-shadow: 0px 4px 15px rgba(0,0,0,0.3), 
+                    0px 0px 30px rgba(109, 190, 109, 0.6);
     }
 
     /* Titel */
@@ -72,17 +75,17 @@ st.markdown(
         font-size: 50px;
         font-weight: bold;
         font-family: 'Poppins', sans-serif;
-        color: #2C3E50;
-        margin-top: 25px;
-        letter-spacing: 0.8px;
-        text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+        color: #ffffff;
+        margin-top: 20px;
+        letter-spacing: 1px;
+        text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
     }
 
     /* Untertitel */
     .header-subtitle {
         font-size: 18px;
         font-weight: 300;
-        color: #4b5563;
+        color: #f0f0f0;
         margin-bottom: 20px;
     }
 
@@ -91,22 +94,22 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# 📌 **Header mit neuem Design**
+# 📌 **Header mit schimmerndem Hintergrund & zentriertem Logo**
 st.markdown('<div class="header-container">', unsafe_allow_html=True)
 
-# Farbverlauf als Banner
-st.markdown('<div class="gradient-banner"></div>', unsafe_allow_html=True)
+# Hintergrund hinzufügen
+st.markdown('<div class="header-background"></div>', unsafe_allow_html=True)
 
-# Logo direkt unterhalb des Farbverlaufs platzieren
+# Logo zentrieren
 st.markdown('<div class="logo-container">', unsafe_allow_html=True)
-st.image("https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/IMG_07283.PNG", width=130)
+st.image("https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/IMG_07283.PNG", width=140)
 st.markdown('</div>', unsafe_allow_html=True)
 
 # Titel und Untertitel
 st.markdown(
     """
     <div class="header-title">MediMetrics</div>
-    <div class="header-subtitle">Evaluierung der Raum- & Flächennutzung für maximale Effizienz im Krankenhaus</div>
+    <div class="header-subtitle">Optimierung der Raum- & Flächennutzung für maximale Effizienz im Krankenhaus</div>
     """,
     unsafe_allow_html=True
 )
