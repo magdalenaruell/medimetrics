@@ -70,7 +70,7 @@ st.markdown(
     font-size: 65px;
     font-weight: bold;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-    margin-top: -40px; /* Höher setzen */
+    margin-top: -60px; /* Höher setzen */
 }
 
 /* Untertitel */
