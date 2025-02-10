@@ -215,10 +215,7 @@ if selected_file1 and selected_file2:
                     row_styles.append(f"<td style='background-color: #FF4500; font-weight:bold;'>{val1} | {val2}</td>")
                     match_status = "🟠"
 
-            row_html = f"<tr><td>{match_status}</td><td>{row}</td><td>{selected_file1}</td>{''.join(row_styles)}</tr>"
-            comparison_html += row_html
-            row_html = f"<tr><td>{match_status}</td><td>{row}</td><td>{selected_file2}</td>{''.join(row_styles)}</tr>"
-            comparison_html += row_html
+           
 
         # **Zeilen, die nur in der ersten Tabelle existieren**
         for row in unique_to_df1:
