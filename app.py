@@ -140,29 +140,7 @@ st.markdown(
 
 st.markdown('</div>', unsafe_allow_html=True)
 
-# 📌 *Grüne Infobox mit Funktionen*
-st.markdown(
-    """
-    <div class="info-box">
-        <div class="header-title">MediMetrics</div>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
 
-# 📌 *Szenario-Bereich auf volle Breite*
-st.markdown('<div class="content-section">', unsafe_allow_html=True)
-
-st.markdown("""
-    ### 🦠 Szenario: Pandemie
-    Ein Krankenhaus erlebt eine massive Zunahme an Patienten aufgrund einer *hochansteckenden Atemwegserkrankung*, 
-    die sich zu einer *Pandemie* ausgeweitet hat. Manche Patienten haben einen *milden Verlauf, andere einen **schwerwiegenden*.  
-      
-    *Erhöhte Flächennutzung:*  
-    - *Intensivmedizin (2.03)* benötigt mehr Betten  
-    - *Isolationskrankenpflege (2.06)* muss erweitert werden  
-    - Andere Funktionsbereiche müssen flexibel umgewidmet werden  
-""")
 
 st.markdown('</div>', unsafe_allow_html=True)
 
