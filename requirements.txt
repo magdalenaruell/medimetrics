@@ -6,3 +6,4 @@ pdfplumber
 pymupdf
 pandas
 openpyxl
+qrcode[pil]
