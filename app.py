@@ -76,6 +76,7 @@ st.markdown(
     /* Vergleichstabelle */
     table {
         width: 50%;
+        justify-content: center;
         border-collapse: collapse;
         margin: auto;
         border-radius: 10px;
