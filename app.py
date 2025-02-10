@@ -204,57 +204,60 @@ if selected_file1 and selected_file2:
     file_url2 = GITHUB_BASE_URL + selected_file2
 
     try:
-        # Immer Tabellenblatt "Paulina" laden
+        # **Tabellenblatt "Paulina" laden**
         sheet_name = "Paulina"
-
         df1 = pd.read_excel(file_url1, sheet_name=sheet_name, engine="openpyxl")
         df2 = pd.read_excel(file_url2, sheet_name=sheet_name, engine="openpyxl")
 
         st.success(f"📄 Dateien erfolgreich geladen: `{selected_file1}` & `{selected_file2}` (Tabellenblatt: {sheet_name})")
 
-        # Sicherstellen, dass Spalte "Räume in Funktionsbereichen" existiert
-        if "Räume in Funktionsbereichen" not in df1.columns or "Räume in Funktionsbereichen" not in df2.columns:
-            st.error("❌ Die Spalte 'Räume in Funktionsbereichen' (Spalte B) existiert nicht in einer oder beiden Dateien.")
+        # **Spaltennamen bereinigen & abgleichen**
+        df1.columns = df1.columns.str.strip()
+        df2.columns = df2.columns.str.strip()
+
+        # **Nur gemeinsame Spalten behalten, um Versatz zu vermeiden**
+        common_columns = df1.columns.intersection(df2.columns)
+        df1 = df1[common_columns]
+        df2 = df2[common_columns]
+
+        # **Beide Tabellen nach "Räume in Funktionsbereichen" indexieren**
+        if "Räume in Funktionsbereichen" not in common_columns:
+            st.error("❌ Die Spalte 'Räume in Funktionsbereichen' existiert nicht in beiden Dateien.")
             st.stop()
 
-        # Beide Tabellen nach "Räume in Funktionsbereichen" gruppieren
         df1_grouped = df1.set_index("Räume in Funktionsbereichen")
         df2_grouped = df2.set_index("Räume in Funktionsbereichen")
 
-        # Gemeinsame & individuelle Zeilen identifizieren
+        # **Gemeinsame & individuelle Zeilen identifizieren**
         common_rows = df1_grouped.index.intersection(df2_grouped.index)
         unique_to_df1 = df1_grouped.index.difference(df2_grouped.index)
         unique_to_df2 = df2_grouped.index.difference(df1_grouped.index)
 
-        # HTML für Vergleichstabelle erstellen
-        comparison_html = """
-        <table>
-            <tr>
-                <th>Vergleich</th>
-                <th>Räume in Funktionsbereichen</th>
-        """
+        # **Vergleichstabelle als HTML generieren**
+        comparison_html = "<table border='1' style='width:100%; border-collapse: collapse;'><thead><tr>"
+        comparison_html += "<th>Vergleich</th><th>Räume in Funktionsbereichen</th>"
 
-        # Spaltenüberschriften aus der ersten Datei übernehmen
-        for col in df1.columns:
-            comparison_html += f"<th>{col}</th>"
-        comparison_html += "</tr>"
+        for col in common_columns:
+            if col != "Räume in Funktionsbereichen":  # Diese Spalte wurde bereits indexiert
+                comparison_html += f"<th>{col}</th>"
+        comparison_html += "</tr></thead><tbody>"
 
-        # **Fix für Zeilen, die nur eine Instanz haben**
         def ensure_dataframe(row):
+            """ Sicherstellen, dass jede Zeile als DataFrame verarbeitet wird """
             return row.to_frame().T if isinstance(row, pd.Series) else row
 
-        # **Gemeinsame Zeilen (Untereinander)**
+        # **Vergleich gemeinsame Zeilen**
         for row in common_rows:
             row1 = ensure_dataframe(df1_grouped.loc[row])
             row2 = ensure_dataframe(df2_grouped.loc[row])
-
             row_styles = []
             match_status = "🟢"
 
-            for col in row1.columns:
-                if col not in row2.columns:
-                    continue
-                val1, val2 = row1[col].values[0], row2[col].values[0]
+            for col in common_columns:
+                if col == "Räume in Funktionsbereichen":
+                    continue  # Diese Spalte wurde bereits indexiert
+                val1 = row1[col].values[0] if col in row1.columns else "—"
+                val2 = row2[col].values[0] if col in row2.columns else "—"
 
                 if val1 == val2:
                     row_styles.append(f"<td style='background-color: #90EE90;'>{val1}</td>")
@@ -262,19 +265,29 @@ if selected_file1 and selected_file2:
                     row_styles.append(f"<td style='background-color: #FF4500; font-weight:bold;'>{val1} | {val2}</td>")
                     match_status = "🟠"
 
-            row_html = f"<tr><td>{match_status}</td><td>{row}</td>{''.join(row_styles)}</tr>"
-            comparison_html += row_html
+            comparison_html += f"<tr><td>{match_status}</td><td>{row}</td>{''.join(row_styles)}</tr>"
 
-        # **Zeilen, die nur in einer Tabelle existieren**
+        # **Zeilen, die nur in der ersten Tabelle existieren**
         for row in unique_to_df1:
-            row_html = f"<tr><td>🔴</td><td>{row}</td></tr>"
+            row1 = ensure_dataframe(df1_grouped.loc[row])
+            row_html = f"<tr><td>🔴</td><td>{row}</td>"
+            for col in common_columns:
+                if col != "Räume in Funktionsbereichen":
+                    row_html += f"<td>{row1[col].values[0] if col in row1.columns else '—'}</td>"
+            row_html += "</tr>"
             comparison_html += row_html
 
+        # **Zeilen, die nur in der zweiten Tabelle existieren**
         for row in unique_to_df2:
-            row_html = f"<tr><td>🔴</td><td>{row}</td></tr>"
+            row2 = ensure_dataframe(df2_grouped.loc[row])
+            row_html = f"<tr><td>🔴</td><td>{row}</td>"
+            for col in common_columns:
+                if col != "Räume in Funktionsbereichen":
+                    row_html += f"<td>{row2[col].values[0] if col in row2.columns else '—'}</td>"
+            row_html += "</tr>"
             comparison_html += row_html
 
-        comparison_html += "</table>"
+        comparison_html += "</tbody></table>"
 
         st.subheader("📊 Vergleich der Tabellen")
 
