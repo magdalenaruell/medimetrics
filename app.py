@@ -62,7 +62,7 @@ st.markdown(
 .logo {
     width: 130px;
     height: 130px;
-    margin-top: -250px; /* NEU: Logo noch höher setzen */
+    margin-top: -350px; /* NEU: Logo noch höher setzen */
     border-radius: 50%;
     background-color: transparent;
     mix-blend-mode: multiply;
