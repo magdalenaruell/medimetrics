@@ -21,91 +21,67 @@ EXCEL_FILES = [
     "2.14_Komfortstation.xlsx",
 ]
 
-# 🌟 Stil-Optimierung für den Header
+# 🔥 Vollbild-Optimierung mit CSS
 st.markdown(
     """
     <style>
-    /* Gesamt-Header */
-    .header-container {
+    /* Gesamt-Layout auf volle Breite setzen */
+    .main-container {
         width: 100%;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding-top: 30px;
-        padding-bottom: 40px;
-        position: relative;
-        background-color: #F2F3F4; /* Hellgrauer Hintergrund */
+        padding: 0;
+        margin: 0;
     }
 
-    /* Farbverlauf-Hintergrund */
+    /* Header-Hintergrund flächendeckend */
     .header-background {
         width: 100%;
-        height: 280px;
-        background: linear-gradient(to bottom, #ffffff, #4A8C45);
-        border-bottom-left-radius: 40px;
-        border-bottom-right-radius: 40px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -1;
+        height: 250px;
+        background: linear-gradient(to right, #1A237E, #4A8C45);
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
-    /* Logo-Position oben rechts */
-    .logo-container {
-        position: absolute;
-        top: 20px;
-        right: 30px;
-        z-index: 10;
+    /* Logo & Titel im Header */
+    .header-content {
+        text-align: center;
+        color: white;
+        font-family: 'Arial', sans-serif;
     }
 
-    .logo {
-        width: 130px;
-        height: 130px;
-    }
-
-    /* Titel */
     .header-title {
         font-size: 55px;
         font-weight: bold;
-        font-family: 'Arial', sans-serif;
-        color: #1A237E; /* Dunkelblau */
-        margin-top: 50px;
-        letter-spacing: 1px;
-        text-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
     }
 
-    /* Untertitel */
     .header-subtitle {
         font-size: 22px;
         font-weight: 300;
-        color: #2C3E50;
-        margin-bottom: 30px;
+        color: #f0f0f0;
     }
 
-    /* Grüne Infobox */
+    /* Grüne Infobox über volle Breite */
     .info-box {
-        width: 80%;
+        width: 100%;
         background: #4A8C45;
         color: white;
         padding: 20px;
-        border-radius: 15px;
-        font-size: 18px;
-        text-align: left;
-        margin-top: 20px;
+        text-align: center;
+        font-size: 20px;
         box-shadow: 3px 3px 15px rgba(0,0,0,0.2);
     }
 
-    .info-box ul {
-        padding-left: 20px;
+    /* Szenario-Text auf volle Breite */
+    .content-section {
+        width: 80%;
+        margin: auto;
+        font-size: 18px;
+        line-height: 1.6;
+        text-align: justify;
     }
 
-    .info-box li {
-        padding: 5px 0;
-    }
-
-    /* Footer */
+    /* Footer auf gesamte Breite */
     .footer {
         width: 100%;
         text-align: center;
@@ -113,31 +89,24 @@ st.markdown(
         color: white;
         padding: 10px;
         font-size: 14px;
-        position: absolute;
-        bottom: 0;
-        left: 0;
     }
+
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# 📌 **Header mit PowerPoint-Design**
-st.markdown('<div class="header-container">', unsafe_allow_html=True)
+# 📌 **Header mit voller Breite**
+st.markdown('<div class="header-background">', unsafe_allow_html=True)
 
-# Hintergrund hinzufügen
-st.markdown('<div class="header-background"></div>', unsafe_allow_html=True)
-
-# Logo rechts oben
-st.markdown('<div class="logo-container">', unsafe_allow_html=True)
-st.image("https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/IMG_07283.PNG", width=130)
-st.markdown('</div>', unsafe_allow_html=True)
-
-# Titel und Untertitel
+# Logo & Titel im Header
 st.markdown(
     """
-    <div class="header-title">MediMetrics</div>
-    <div class="header-subtitle">Evaluierung der Raum- & Flächennutzung für maximale Effizienz im Krankenhaus</div>
+    <div class="header-content">
+        <img src="https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/IMG_07283.PNG" width="130">
+        <div class="header-title">MediMetrics</div>
+        <div class="header-subtitle">Evaluierung der Raum- & Flächennutzung für maximale Effizienz im Krankenhaus</div>
+    </div>
     """,
     unsafe_allow_html=True
 )
@@ -148,15 +117,29 @@ st.markdown('</div>', unsafe_allow_html=True)
 st.markdown(
     """
     <div class="info-box">
-        <ul>
-            <li>Online-Tool zum Vergleich der Funktionsbereiche und Flächenanforderungen</li>
-            <li>Szenarien zur Untersuchung verschiedener Bedarfe eines Krankenhauses</li>
-            <li>Gibt mögliche Flächen aus</li>
-        </ul>
+        ✅ Online-Tool zum Vergleich der Funktionsbereiche und Flächenanforderungen  
+        ✅ Szenarien zur Untersuchung verschiedener Bedarfe eines Krankenhauses  
+        ✅ Gibt mögliche Flächen aus
     </div>
     """,
     unsafe_allow_html=True
 )
+
+# 📌 **Szenario-Bereich auf volle Breite**
+st.markdown('<div class="content-section">', unsafe_allow_html=True)
+
+st.markdown("""
+    ### 🦠 Szenario: Pandemie
+    Ein Krankenhaus erlebt eine massive Zunahme an Patienten aufgrund einer **hochansteckenden Atemwegserkrankung**, 
+    die sich zu einer **Pandemie** ausgeweitet hat. Manche Patienten haben einen **milden Verlauf**, andere einen **schwerwiegenden**.  
+      
+    **Erhöhte Flächennutzung:**  
+    - **Intensivmedizin (2.03)** benötigt mehr Betten  
+    - **Isolationskrankenpflege (2.06)** muss erweitert werden  
+    - Andere Funktionsbereiche müssen flexibel umgewidmet werden  
+""")
+
+st.markdown('</div>', unsafe_allow_html=True)
 
 # 📌 **Footer**
 st.markdown(
