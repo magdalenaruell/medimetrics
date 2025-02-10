@@ -64,7 +64,8 @@ st.markdown(
     height: 120px;
     margin-top: 20px;
     border-radius: 50%;
-    background: none; /* Hintergrund entfernen */
+    background-color: transparent; /* Hintergrund entfernen */
+    mix-blend-mode: multiply; /* Entfernt helle Hintergründe */
     padding: 0px;
     box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
 }
