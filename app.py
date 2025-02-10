@@ -42,7 +42,7 @@ st.markdown(
     align-items: center;
     position: relative;
     box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
-    margin-bottom: 0px; /* NEU: Entfernt Abstand nach unten */
+    margin-bottom: -50px; /* NEU: Entfernt Abstand nach unten */
     padding-bottom: 0px; /* NEU: Verhindert Padding */
 }
 
