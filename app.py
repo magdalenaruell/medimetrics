@@ -30,15 +30,16 @@ st.markdown(
 /* Header-Hintergrund flächendeckend */
 .header-background {
     width: 100%;
-    height: 800px; /* Mehr Platz für das Logo und Titel */
+    height: 850px; /* Mehr Höhe für das Logo & Titel */
     background: linear-gradient(to right, #1A237E, #4A8C45);
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     position: relative;
     box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
     padding-bottom: 0px;
-    margin-bottom: -50px; /* Reduziert Lücke */
+    margin-bottom: 0px; /* KEINE negative Margin */
 }
 
 /* Logo & Titel Container */
@@ -47,16 +48,16 @@ st.markdown(
     color: white;
     font-family: 'Arial', sans-serif;
     position: absolute;
-    top: 10%;  /* Noch weiter nach oben */
+    top: 25%;  /* Logo und Titel nach oben */
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
 /* Logo Styling */
 .logo {
-    width: 170px;  /* Größer für mehr Präsenz */
-    height: 170px;
-    margin-top: -180px; /* Noch höher setzen */
+    width: 150px;  /* Größer für bessere Darstellung */
+    height: 150px;
+    margin-top: -50px; /* Noch weiter nach oben setzen */
     border-radius: 50%;
     background-color: transparent;
     mix-blend-mode: multiply;
@@ -69,7 +70,7 @@ st.markdown(
     font-size: 65px;
     font-weight: bold;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-    margin-top: -30px; /* Weiter nach oben */
+    margin-top: 10px; /* Sicherstellen, dass es sichtbar bleibt */
 }
 
 /* Untertitel */
@@ -77,7 +78,7 @@ st.markdown(
     font-size: 22px;
     font-weight: 300;
     color: #f0f0f0;
-    margin-top: -20px; /* Höher setzen */
+    margin-top: 10px;
 }
 
 /* Footer auf gesamte Breite */
