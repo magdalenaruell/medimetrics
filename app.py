@@ -42,7 +42,7 @@ st.markdown(
     align-items: center;
     position: relative;
     box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
-    margin-bottom: -70px;
+    margin-bottom: -90px;
     padding-bottom: 0px;
 }
 
@@ -62,7 +62,7 @@ st.markdown(
 .logo {
     width: 120px;
     height: 120px;
-    margin-top: -70px; /* Höher in den Verlauf setzen */
+    margin-top: -90px; /* Höher in den Verlauf setzen */
     border-radius: 50%;
     background-color: transparent;
     mix-blend-mode: multiply;
