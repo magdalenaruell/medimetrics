@@ -91,8 +91,12 @@ st.markdown(
     }
 
     th {
-        background-color: #e3f2fd;
+        background-color: #e3f2fd;  /* Hellblauer Hintergrund */
         font-weight: bold;
+        padding: 12px;
+        text-align: center;
+        border: 1px solid #ddd;
+        font-size: 16px;  /* Größe des Textes */
     }
 
     td {
