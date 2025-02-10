@@ -59,10 +59,10 @@ st.markdown(
 .logo {
     width: 120px;
     height: 120px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
-    padding: 10px;
+    padding: 0px;
     box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
 }
 
