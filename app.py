@@ -230,7 +230,9 @@ if selected_file1 and selected_file2:
         st.markdown("""
         Die folgende Tabelle vergleicht die Anforderungen der einzelnen Räume aus den gewählten Teilstellen. Grün hinterlegte Zellen kennzeichnen übereinstimmende Anforderungen, während rot markierte Zellen Unterschiede hervorheben. Diese Unterschiede werden detailliert in der Form „Anforderung erste Teilstelle | Anforderung Vergleichsteilstelle“ dargestellt. Im unteren Abschnitt der Tabelle sind Räume aufgeführt, die lediglich in einer der Teilstellen erforderlich sind.
 
+
         Die Symbole am Beginn der Zeilen haben folgende Bedeutungen:
+        
         **Gleiche Werte in beiden Tabellen = 🟩**  
         **Unterschiedliche Werte in beiden Tabellen = 🟥**  
         **Komplette Zeilen-Übereinstimmung = 🟢**  
