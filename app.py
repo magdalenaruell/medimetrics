@@ -30,15 +30,15 @@ st.markdown(
 /* Header-Hintergrund flächendeckend */
 .header-background {
     width: 100%;
-    height: 800px; /* NEU: Erhöhte Höhe für Logo & Titel */
+    height: 800px; /* Mehr Platz für das Logo und Titel */
     background: linear-gradient(to right, #1A237E, #4A8C45);
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
-    padding-bottom: 0px; /* Verhindert unnötige Lücke */
-    margin-bottom: 0px; /* Lücke unterhalb entfernen */
+    padding-bottom: 0px;
+    margin-bottom: -50px; /* Reduziert Lücke */
 }
 
 /* Logo & Titel Container */
@@ -47,16 +47,16 @@ st.markdown(
     color: white;
     font-family: 'Arial', sans-serif;
     position: absolute;
-    top: 20%;  /* NEU: Position weiter oben */
+    top: 10%;  /* Noch weiter nach oben */
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
 /* Logo Styling */
 .logo {
-    width: 150px;  /* Größer für mehr Präsenz */
-    height: 150px;
-    margin-top: -50px; /* NEU: Weiter nach oben */
+    width: 170px;  /* Größer für mehr Präsenz */
+    height: 170px;
+    margin-top: -180px; /* Noch höher setzen */
     border-radius: 50%;
     background-color: transparent;
     mix-blend-mode: multiply;
@@ -66,10 +66,10 @@ st.markdown(
 
 /* Titel im Header */
 .header-title {
-    font-size: 65px; /* Etwas größer für besseren Fokus */
+    font-size: 65px;
     font-weight: bold;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-    margin-top: -10px; /* NEU: Höher positioniert */
+    margin-top: -30px; /* Weiter nach oben */
 }
 
 /* Untertitel */
@@ -77,7 +77,7 @@ st.markdown(
     font-size: 22px;
     font-weight: 300;
     color: #f0f0f0;
-    margin-top: -10px; /* NEU: Höher gesetzt */
+    margin-top: -20px; /* Höher setzen */
 }
 
 /* Footer auf gesamte Breite */
@@ -88,7 +88,7 @@ st.markdown(
     color: white;
     padding: 15px;
     font-size: 14px;
-    position: relative; /* Sicherstellen, dass er korrekt abschließt */
+    position: relative; /* Stellt sicher, dass der Footer unten bleibt */
 }
    
 
