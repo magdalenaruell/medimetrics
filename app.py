@@ -32,34 +32,53 @@ st.markdown(
         margin: 0;
     }
 
-    /* Header-Hintergrund flächendeckend */
-    .header-background {
-        width: 100%;
-        height: 250px;
-        background: linear-gradient(to right, #1A237E, #4A8C45);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+   /* Header-Hintergrund flächendeckend */
+.header-background {
+    width: 100vw;  /* Volle Bildschirmbreite */
+    height: 280px; /* Etwas mehr Höhe für besseren Fokus */
+    background: linear-gradient(to right, #1A237E, #4A8C45); /* Farbverlauf */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
+}
 
-    /* Logo & Titel im Header */
-    .header-content {
-        text-align: center;
-        color: white;
-        font-family: 'Arial', sans-serif;
-    }
+/* Container für Logo & Titel */
+.header-content {
+    text-align: center;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
-    .header-title {
-        font-size: 55px;
-        font-weight: bold;
-        text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-    }
+/* Logo Styling */
+.logo {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+}
 
-    .header-subtitle {
-        font-size: 22px;
-        font-weight: 300;
-        color: #f0f0f0;
-    }
+/* Titel im Header */
+.header-title {
+    font-size: 55px;
+    font-weight: bold;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+}
+
+/* Untertitel */
+.header-subtitle {
+    font-size: 22px;
+    font-weight: 300;
+    color: #f0f0f0;
+}
 
     /* Grüne Infobox über volle Breite */
     .info-box {
