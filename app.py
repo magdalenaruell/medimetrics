@@ -166,9 +166,6 @@ if selected_file1 and selected_file2:
             st.error("❌ Die Spalte 'Räume in Funktionsbereichen' (Spalte B) existiert nicht in einer oder beiden Dateien.")
             st.stop()
 
-        df1["Tabelle"] = selected_file1
-        df2["Tabelle"] = selected_file2
-
         # Beide Tabellen nach "Räume in Funktionsbereichen" gruppieren
         df1_grouped = df1.set_index("Räume in Funktionsbereichen")
         df2_grouped = df2.set_index("Räume in Funktionsbereichen")
@@ -184,7 +181,6 @@ if selected_file1 and selected_file2:
             <tr>
                 <th>Vergleich</th>
                 <th>Räume in Funktionsbereichen</th>
-                <th>Tabelle</th>
         """
 
         # Spaltenüberschriften aus der ersten Datei übernehmen
@@ -215,27 +211,16 @@ if selected_file1 and selected_file2:
                     row_styles.append(f"<td style='background-color: #FF4500; font-weight:bold;'>{val1} | {val2}</td>")
                     match_status = "🟠"
 
-            row_html = f"<tr><td>{match_status}</td><td>{row}</td><td>{selected_file1}</td>{''.join(row_styles)}</tr>"
-            comparison_html += row_html
-            row_html = f"<tr><td>{match_status}</td><td>{row}</td><td>{selected_file2}</td>{''.join(row_styles)}</tr>"
+            row_html = f"<tr><td>{match_status}</td><td>{row}</td>{''.join(row_styles)}</tr>"
             comparison_html += row_html
 
-        # **Zeilen, die nur in der ersten Tabelle existieren**
+        # **Zeilen, die nur in einer Tabelle existieren**
         for row in unique_to_df1:
-            row1 = ensure_dataframe(df1_grouped.loc[row])
-            row_html = f"<tr><td>🔴</td><td>{row}</td><td>{selected_file1}</td>"
-            for col in df1.columns:
-                row_html += f"<td>{row1[col].values[0] if col in row1.columns else '—'}</td>"
-            row_html += "</tr>"
+            row_html = f"<tr><td>🔴</td><td>{row}</td></tr>"
             comparison_html += row_html
 
-        # **Zeilen, die nur in der zweiten Tabelle existieren**
         for row in unique_to_df2:
-            row2 = ensure_dataframe(df2_grouped.loc[row])
-            row_html = f"<tr><td>🔴</td><td>{row}</td><td>{selected_file2}</td>"
-            for col in df2.columns:
-                row_html += f"<td>{row2[col].values[0] if col in row2.columns else '—'}</td>"
-            row_html += "</tr>"
+            row_html = f"<tr><td>🔴</td><td>{row}</td></tr>"
             comparison_html += row_html
 
         comparison_html += "</table>"
@@ -252,6 +237,8 @@ if selected_file1 and selected_file2:
 
         st.markdown(comparison_html, unsafe_allow_html=True)
 
+    except Exception as e:
+        st.error(f"❌ Fehler beim Einlesen der Tabellen: {str(e)}")
     except Exception as e:
         st.error(f"❌ Fehler beim Einlesen der Tabellen: {str(e)}")
 st.markdown("MediMetrics ist ein Universitätsprojekt der University of Applied Sciences im Rahmen des Moduls Nachhaltiges Betreiben von Objekten. Betreut von Kirch und Abel, entworfen von Kirchhoff, Kuehn, Merz, Ruell und Wecker.")
