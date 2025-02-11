@@ -30,6 +30,7 @@ st.markdown(
 /* Entfernt Seitenränder und setzt die App auf volle Breite */
     .main .block-container {
         max-width: 100%;
+        justify-content: left;
         padding-left: 2rem;
         padding-right: 2rem;
     }
