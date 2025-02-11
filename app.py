@@ -41,7 +41,7 @@ st.markdown(
 /* Header-Hintergrund flächendeckend */
 .header-background {
     width: 100%;
-    height: 800px; /* Mehr Höhe für das Logo & Titel */
+    height: 700px; /* Mehr Höhe für das Logo & Titel */
     background: linear-gradient(to right, #1A237E, #A9E0E8, #4A8C45);
     display: flex;
     justify-content: center;
@@ -99,7 +99,7 @@ st.markdown(
     background: #1A237E;
     color: white;
     padding: 15px;
-    margin-top: 300px;
+    margin-top: 350px;
     margin-bottom: 10px; 
     font-size: 14px;
     position: relative; /* Stellt sicher, dass der Footer unten bleibt */
