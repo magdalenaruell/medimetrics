@@ -305,7 +305,8 @@ if selected_file1 and selected_file2:
                         matching_values += 1
         # **Berechnung der prozentualen Übereinstimmung**
         match_percentage = (matching_values / total_values * 100) if total_values > 0 else 0
-
+        diff_percentage = 100 - match_percentage
+        
         # **Ausgabe der Übereinstimmung**
         st.subheader("🔎 Übereinstimmung der Tabellen")
         st.markdown(f"**Gesamtübereinstimmung: `{match_percentage:.2f}%`** der Werte sind identisch.")
