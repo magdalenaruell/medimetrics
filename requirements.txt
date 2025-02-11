@@ -7,3 +7,4 @@ pymupdf
 pandas
 openpyxl
 qrcode[pil]
+matplotlib.pyplot
