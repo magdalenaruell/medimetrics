@@ -286,6 +286,13 @@ if selected_file1 and selected_file2:
         **Keine Übereinstimmung = 🔴**  
         """)
 
+        # **Berechnung der prozentualen Übereinstimmung**
+        match_percentage = (matching_values / total_values * 100) if total_values > 0 else 0
+
+        # **Ausgabe der Übereinstimmung**
+        st.subheader("🔎 Übereinstimmung der Tabellen")
+        st.markdown(f"**Gesamtübereinstimmung: `{match_percentage:.2f}%`** der Werte sind identisch.")
+
         st.markdown(comparison_html, unsafe_allow_html=True)
 
     except Exception as e:
