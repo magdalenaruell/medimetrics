@@ -285,7 +285,23 @@ if selected_file1 and selected_file2:
         **Teilweise Übereinstimmung = 🟠**  
         **Keine Übereinstimmung = 🔴**  
         """)
+        
+        # **Übereinstimmung berechnen**
+        total_values = 0
+        matching_values = 0
 
+        for row in common_rows:
+            for col in common_columns:
+                if col == "Räume in Funktionsbereichen":
+                    continue
+
+                val1 = df1_grouped.loc[row, col] if col in df1_grouped.columns else None
+                val2 = df2_grouped.loc[row, col] if col in df2_grouped.columns else None
+
+                if not pd.isna(val1) and not pd.isna(val2):  # Nur nicht-leere Werte vergleichen
+                    total_values += 1
+                    if val1 == val2:
+                        matching_values += 1
         # **Berechnung der prozentualen Übereinstimmung**
         match_percentage = (matching_values / total_values * 100) if total_values > 0 else 0
 
