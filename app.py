@@ -2,6 +2,9 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
+# 🌍 Setzt das Seitenlayout auf "wide" für volle Breite
+st.set_page_config(layout="wide")
+
 # 🔗 GitHub-Repository mit den Excel-Dateien
 GITHUB_BASE_URL = "https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/"
 
@@ -29,7 +32,7 @@ st.markdown(
   
 /* Entfernt Seitenränder und setzt die App auf volle Breite */
     .main .block-container {
-        max-width: 1000px;
+        max-width: 100%;
         justify-content: left;
         padding-left: 2rem;
         padding-right: 2rem;
