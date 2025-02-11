@@ -27,7 +27,13 @@ st.markdown(
     """
     <style>
   
-
+/* Entfernt Seitenränder und setzt die App auf volle Breite */
+    .main .block-container {
+        max-width: 100%;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    
 /* Header-Hintergrund flächendeckend */
 .header-background {
     width: 100%;
