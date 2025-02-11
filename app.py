@@ -1,15 +1,5 @@
 import streamlit as st
 import pandas as pd
-import qrcode
-
-# URL deiner Streamlit-App
-app_url = "https://medimetrics.streamlit.app/"
-
-# QR-Code über eine externe API einfügen
-qr_code_url = f"https://api.qrserver.com/v1/create-qr-code/?size=250x250&data={app_url}"
-
-# QR-Code anzeigen
-st.image(qr_code_url, caption="🔗 Scan den QR-Code, um MediMetrics zu öffnen!", use_container_width=True)
 
 # 🔗 GitHub-Repository mit den Excel-Dateien
 GITHUB_BASE_URL = "https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/"
