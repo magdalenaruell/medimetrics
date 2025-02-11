@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
 
 # 🔗 GitHub-Repository mit den Excel-Dateien
 GITHUB_BASE_URL = "https://raw.githubusercontent.com/magdalenaruell/medimetrics/main/"
@@ -310,7 +311,19 @@ if selected_file1 and selected_file2:
         st.markdown(f"**Gesamtübereinstimmung: `{match_percentage:.2f}%`** der Werte sind identisch.")
 
         st.markdown(comparison_html, unsafe_allow_html=True)
+        
+        # 📊 **Diagramm einfügen**
+        st.subheader("📊 Grafische Darstellung der Übereinstimmung")
 
+        fig, ax = plt.subplots(figsize=(5, 5))
+        labels = ['Übereinstimmende Werte', 'Abweichende Werte']
+        sizes = [match_percentage, diff_percentage]
+        colors = ['#4CAF50', '#FF4500']
+
+        ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90, colors=colors, wedgeprops={'edgecolor': 'white'})
+        ax.axis('equal')  # Gleichmäßige Darstellung
+
+        st.pyplot(fig)
     except Exception as e:
         st.error(f"❌ Fehler beim Einlesen der Tabellen: {str(e)}")
     except Exception as e:
