@@ -326,7 +326,7 @@ if selected_file1 and selected_file2:
         # 📊 **Diagramm einfügen**
         st.subheader("📊 Grafische Darstellung der Übereinstimmung")
 
-        fig, ax = plt.subplots(figsize=(5, 5))
+        fig, ax = plt.subplots(figsize=(1, 1))
         labels = ['Übereinstimmende Werte', 'Abweichende Werte']
         sizes = [match_percentage, diff_percentage]
         colors = ['#4CAF50', '#FF4500']
